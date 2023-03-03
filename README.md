@@ -12,13 +12,13 @@ This is a project template for the Front-end project, it is a simple e-commerce 
 - [React](https://reactjs.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [React-Router-Dom](https://reactrouter.com/web/guides/quick-start)
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start)
 
 ## Requirement
 
 1. Use the API endpoints [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
 
-2. Use React Router to create atleast 4 pages (can be more if you want):
+2. Use React Router to create at least 4 pages (can be more if you want):
 
    - [x] Home page
    - [ ] Products page - list all products (can be a grid or a list view)
@@ -27,14 +27,12 @@ This is a project template for the Front-end project, it is a simple e-commerce 
 
 3. Create Redux store for following features:
 
-   - [ ] product reducer: get all products, find a single products, sort products by categories, sort products by price. Create, update and delete a product.
+   - [ ] product reducer: get all products, find a single product, sort products by categories, sort products by price. Create, update and delete a product.
    - [ ] cart reducer: add, remove, update, clear cart.
    - [ ] user reducer: login, logout, register (optional - if you want to add user registration)
-   - [ ] theme reducer: switch theme (optional - theme could be in redux store or in context API, recommended to use context API for this)
+   - [ ] theme reducer: switch theme (optional - theme could be in Redux store or in context API, recommended to use context API for this)
 
-4. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
-
-5. Deploy the application and rewrite README file with the link to the deployed application.
+4. Deploy the application and rewrite README file with the link to the deployed application.
 
 ## Bonus
 
@@ -50,7 +48,7 @@ This is a project template for the Front-end project, it is a simple e-commerce 
 
 ## Submission
 
-- [ ] Fork and clone this repository. **Make a pull request to this repository as soon as you make your first commit** - you dont have to wait until you finish the project.
+- [ ] Fork and clone this repository. **Make a pull request to this repository as soon as you make your first commit** - you don't have to wait until you finish the project.
 
 - [ ] Deploy the application and rewrite README file with the link to the deployed application.
 
