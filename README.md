@@ -1,10 +1,66 @@
-# Getting Started with Create React App
+# Front-end Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+![React](https://img.shields.io/badge/React-v.18-blue)
+![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
+![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
+![react-router-dom](https://img.shields.io/badge/ReactRouter-v.6.4-orange)
 
-## Available Scripts
+This is a project template for the Front-end project, it is a simple e-commerce website that requires implementation of TypeScript and Redux.
+
+## Stack that come with this project template
+
+- [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React-Router-Dom](https://reactrouter.com/web/guides/quick-start)
+
+## Requirement
+
+1. Use the API endpoints [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
+
+2. Use React Router to create atleast 4 pages (can be more if you want):
+
+   - [x] Home page
+   - [ ] Products page - list all products (can be a grid or a list view)
+   - [ ] Product detail page
+   - [ ] Cart page (cart could be a page or a modal)
+
+3. Create Redux store for following features:
+
+   - [ ] product reducer: get all products, find a single products, sort products by categories, sort products by price. Create, update and delete a product.
+   - [ ] cart reducer: add, remove, update, clear cart.
+   - [ ] user reducer: login, logout, register (optional - if you want to add user registration)
+   - [ ] theme reducer: switch theme (optional - theme could be in redux store or in context API, recommended to use context API for this)
+
+4. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
+
+5. Deploy the application and rewrite README file with the link to the deployed application.
+
+## Bonus
+
+- [ ] Use context API to switch theme
+- [ ] Include user registration feature and user profile page
+- [ ] Add a search bar to search products by name
+- [ ] Add a filter to filter products by price or category
+- [ ] Persist cart and user items in local storage
+- [ ] Add a loading indicator when fetching data from API
+- [ ] Add a 404 page for routes that do not exist
+- [ ] Add a pagination to products page
+- [ ] Add ..... (you can add more features if you want)
+
+## Submission
+
+- [ ] Fork and clone this repository. **Make a pull request to this repository as soon as you make your first commit** - you dont have to wait until you finish the project.
+
+- [ ] Deploy the application and rewrite README file with the link to the deployed application.
+
+## Instruction to start the project
 
 In the project directory, you can run:
+
+### `npm install`
+
+Install all the dependencies
 
 ### `npm start`
 
@@ -16,31 +72,9 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
