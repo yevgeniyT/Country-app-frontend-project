@@ -1,78 +1,66 @@
-# Front-end Project
+# FRONT END PROJECT
 
 ![React](https://img.shields.io/badge/React-v.18-blue)
 ![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 ![react-router-dom](https://img.shields.io/badge/ReactRouter-v.6.4-orange)
 
-This is a project template for the Front-end project, it is a simple e-commerce website that requires implementation of TypeScript and Redux.
+The front end project is to practice React with TypeScript and Redux. Completing all requirement, you will get 20 points/ 20 points. Good luck and HAVE FUN !!!
 
-## Stack that come with this project template
+## How to run project
 
-- [React](https://reactjs.org/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+1. Step 1: npm install
+2. Step 2: npm start
 
-## Requirement
+## Logic Requirements (9 points)
 
-1. Use the API endpoints [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
+1. Fetch data from this API: `https://restcountries.com/v3.1/all`
+2. The user can search country by name
+3. Get country detail by this API: `https://restcountries.com/v3.1/name/{name}`
+4. When the user click to country name or a button it should show country detail
+5. The country detail should have name, region, population, flag and list of languages
+6. The user can add country to `Favorite` page
+7. When the user add a country to `Favorite` the favorite icon should change the color.
+8. Have a `Loading` page while fetching data
+9. Deploy the project
 
-2. Use React Router to create at least 4 pages (can be more if you want):
+## Styling Requirements (4 points)
 
-   - [x] Home page
-   - [ ] Products page - list all products (can be a grid or a list view)
-   - [ ] Product detail page
-   - [ ] Cart page (cart could be a page or a modal)
+1. Font: `font-family: 'Nunito', sans-serif`
+2. Display data in table
+3. Navbar and Footer
+4. When the user add an country to `Favorite` page, you should show a message, for example: `A country just added to the favorite page`
 
-3. Create Redux store for following features:
+## Code style Requirements (6 points)
 
-   - [ ] product reducer: get all products, find a single product, sort products by categories, sort products by price. Create, update and delete a product.
-   - [ ] cart reducer: add, remove, update, clear cart.
-   - [ ] user reducer: login, logout, register (optional - if you want to add user registration)
-   - [ ] theme reducer: switch theme (optional - theme could be in Redux store or in context API, recommended to use context API for this)
+1. Naming convention
+2. Clear file structure
+3. Divided the project to small components
+4. Clean code: no console.log, no dead code,
+5. Format code (Prettier - Code formatter)
+6. Separate import from your own file and the import from the package
 
-4. Deploy the application and rewrite README file with the link to the deployed application.
+## Extra requirements (1 points)
 
-## Bonus
+ONLY DO THIS PART WHEN YOU HAVE COMPLETED THE REQUIREMENTS PART
 
-- [ ] Use context API to switch theme
-- [ ] Include user registration feature and user profile page
-- [ ] Add a search bar to search products by name
-- [ ] Add a filter to filter products by price or category
-- [ ] Persist cart and user items in local storage
-- [ ] Add a loading indicator when fetching data from API
-- [ ] Add a 404 page for routes that do not exist
-- [ ] Add a pagination to products page
-- [ ] Add ..... (you can add more features if you want)
+1. Sorting by product name
+2. Sorting the country by population
+3. Add an extra page
+4. Add pagination
 
-## Submission
+## Useful sources
 
-- [ ] Fork and clone this repository. **Make a pull request to this repository as soon as you make your first commit** - you don't have to wait until you finish the project.
+1. API information: `https://restcountries.com/`
+2. Alert: `https://mui.com/material-ui/react-snackbar/#main-content`
+3. Table: `https://mui.com/material-ui/react-table/#basic-table`
+4. Data grid: `https://mui.com/x/react-data-grid/components/#main-content`
+5. Font: `https://fonts.google.com/specimen/Nunito`
+6. Deploy: `https://vercel.com/`, `https://www.netlify.com/`
+7. Prettier - Code formatter - Extension in VSCode
 
-- [ ] Deploy the application and rewrite README file with the link to the deployed application.
+## Screenshots
 
-## Instruction to start the project
+![Country list](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/allCountries.png)
 
-In the project directory, you can run:
-
-### `npm install`
-
-Install all the dependencies
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Country detail](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/eachCountry.png)
