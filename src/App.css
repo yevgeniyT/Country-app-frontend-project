@@ -1,3 +1,26 @@
 .App {
   text-align: center;
 }
+
+/* Header starts here */
+
+header {
+  height: 10vh;
+}
+
+/* Headder ends here */
+
+/* Main starts here */
+main {
+  height: 80vh;
+}
+
+/* Main ends here */
+
+
+/* Footer starts here */
+footer {
+  height: 10vh;
+}
+
+/* Footer ends here */
