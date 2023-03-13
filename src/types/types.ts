@@ -3,7 +3,7 @@
 
 export type Country = {
     name:{};
-    flag:{};
+    flags:{};
     languages:{};
     population:number;
     region:string

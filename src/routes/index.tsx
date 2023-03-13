@@ -9,6 +9,7 @@ import Favorite from '../pages/Favorite'
 import Home from '../pages/Home'
 import Map from '../pages/Map'
 import Error from '../pages/Error'
+import CountriesList from '../pages/CountriesList'
 
 type IndexProps ={}
 
@@ -24,6 +25,7 @@ const Index = () => {
             <Route path='/' element={<Home/>}/>
             <Route path='/favorite' element={<Favorite/>}/>
             <Route path='/map' element={<Map/>}/>
+            <Route path='/countries_list' element={<CountriesList/>}/>
             <Route path='*' element={<Error/>}/>
           </Routes>
         </main>

@@ -1,0 +1,57 @@
+import React from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
+import { useAppSelector } from '../app/hooks';
+
+const CountriesList = () => {
+
+const countryData = useAppSelector ((state)=>state.countryR.countries)
+
+return (
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Flag</th>
+                    <th>Name</th>
+                    <th>Region</th>
+                    <th>Population</th>
+                    <th>Languages</th>
+                    <th> </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {countryData.map((country)=> {
+                return (
+                <tr key={uuidv4()}>
+                    <td>
+                        <img src={country.flags.png} alt={country.alt}/>
+                    </td>
+                    <td>{country.name.official}</td>
+                    <td>{country.region}</td>
+                    <td>{country.population}</td>
+                    <td>
+                        {Object.values(country.languages).map((language)=>{
+                            return (
+                                <ul key={uuidv4()}>
+                                    <li>
+                                        {language}
+                                    </li>
+                                </ul>
+                            )
+                        })}
+                    </td>
+                    <td>Fav</td>
+                    <td>Ditails</td>
+                </tr>
+                )
+                    })
+                }
+            </tbody>
+        </table>
+    </div>
+)
+}
+
+export default CountriesList
