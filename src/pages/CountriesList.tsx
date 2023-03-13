@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useAppSelector } from '../app/hooks';
 
-const CountriesList = () => {
+const CountriesList: React.FC = () => {
 
 const countryData = useAppSelector ((state)=>state.countryR.countries)
 
@@ -26,12 +26,12 @@ return (
                 return (
                 <tr key={uuidv4()}>
                     <td>
-                        <img src={country.flags.png} alt={country.alt}/>
+                        <img src={country.flags.png} alt={country.flags.alt}/>
                     </td>
                     <td>{country.name.official}</td>
                     <td>{country.region}</td>
                     <td>{country.population}</td>
-                    <td>
+                    <td> 
                         {Object.values(country.languages).map((language)=>{
                             return (
                                 <ul key={uuidv4()}>

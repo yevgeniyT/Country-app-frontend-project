@@ -2,9 +2,16 @@
 //! API types starts
 
 export type Country = {
-    name:{};
-    flags:{};
-    languages:{};
+    name:{
+        official:string
+    };
+    flags:{
+        png:string;
+        alt:string;
+    };
+    languages:{
+        [key:string]:string
+    };
     population:number;
     region:string
 }
