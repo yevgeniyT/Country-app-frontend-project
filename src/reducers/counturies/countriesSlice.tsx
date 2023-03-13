@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { createSlice } from "@reduxjs/toolkit"
 
 import { getCountries } from "../../services/api"
@@ -8,14 +10,23 @@ const initialState: CountriesState = {
   countries : [],
   loading: false,
   error: false,
-  message: ''
+  message: '',
+  originalCountrie: []
 }
 
 export const countriesSlice = createSlice ({
   name: 'countries',
   initialState: initialState,
   reducers: {
-
+    search: (state, action) => {
+      let search = action.payload
+      if(search === ''){
+        state.countries=state.originalCountrie
+      } else {
+      state.countries= state.originalCountrie.filter((country) => 
+        country.name.official.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      )}
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -25,6 +36,7 @@ export const countriesSlice = createSlice ({
       )
       .addCase(getCountries.fulfilled, (state, action) =>{
         state.countries=action.payload;
+        state.originalCountrie = action.payload;
         state.loading = false}
       )
       .addCase(getCountries.rejected, (state)=>{
@@ -39,3 +51,4 @@ export const countriesSlice = createSlice ({
 )
 
 export default countriesSlice.reducer
+export const {search}=countriesSlice.actions

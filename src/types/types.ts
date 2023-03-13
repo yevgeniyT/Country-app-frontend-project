@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 
 //! API types starts
 
@@ -28,5 +29,7 @@ export type CountriesState = {
     error: boolean;
     message: string
 }
+
+export type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 
 //! contriesSlice types ends here

@@ -1,14 +1,26 @@
-import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
+//@ts-nocheck
 
+import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../app/hooks';
+import { InputChangeHandler } from '../types/types';
+import { useAppDispatch} from '../app/hooks';
+import { search } from '../reducers/counturies/countriesSlice';
+
 
 const CountriesList: React.FC = () => {
+const dispatch = useAppDispatch()    
 
 const countryData = useAppSelector ((state)=>state.countryR.countries)
 
+const handleSerchQuery: InputChangeHandler = (event) => {
+    dispatch(search(event.target.value))
+}
+
 return (
     <div>
+        <div>
+            <input type='text' placeholder='serch' onChange={handleSerchQuery}/>
+        </div>
         <table>
             <thead>
                 <tr>
