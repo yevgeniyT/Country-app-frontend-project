@@ -1,12 +1,10 @@
-//@ts-nocheck
-
 import { createSlice } from "@reduxjs/toolkit"
 
 import { getCountries } from "../../services/api"
 
 import { CountriesState } from "../../types/types"
 
-const initialState: CountriesState = {
+const INITIAL_STATE: CountriesState = {
   countries : [],
   loading: false,
   error: false,
@@ -16,15 +14,15 @@ const initialState: CountriesState = {
 
 export const countriesSlice = createSlice ({
   name: 'countries',
-  initialState: initialState,
+  initialState: INITIAL_STATE,
   reducers: {
     search: (state, action) => {
-      let search = action.payload
-      if(search === ''){
+      let searchQuery = action.payload
+      if(searchQuery === ''){
         state.countries=state.originalCountrie
       } else {
       state.countries= state.originalCountrie.filter((country) => 
-        country.name.official.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        country.name.official.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
       )}
     }
   },

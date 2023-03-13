@@ -27,7 +27,8 @@ export type CountriesState = {
     countries: CountriesResponse;
     loading: boolean;
     error: boolean;
-    message: string
+    message: string;
+    originalCountrie: CountriesResponse
 }
 
 export type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
