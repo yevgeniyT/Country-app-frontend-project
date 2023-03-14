@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../app/hooks';
 import { InputChangeHandler } from '../types/types';
 import { useAppDispatch} from '../app/hooks';
-import { search } from '../reducers/counturies/countriesSlice';
+import { search, selectCountry } from '../reducers/counturies/countriesSlice';
 
 
 const CountriesList: React.FC = () => {
@@ -38,7 +38,11 @@ return (
                     <td>
                         <img src={country.flags.png} alt={country.flags.alt}/>
                     </td>
-                    <td>{country.name.official}</td>
+                    <td>
+                        <button onClick={()=>dispatch(selectCountry(country.name.official))}>
+                        {country.name.official}
+                        </button>
+                    </td>
                     <td>{country.region}</td>
                     <td>{country.population}</td>
                     <td> 

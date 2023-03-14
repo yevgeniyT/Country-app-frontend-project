@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 
+
 import { getCountries } from '../services/api';
 import { useAppDispatch} from '../app/hooks';
 import CountriesList from './CountriesList';
@@ -14,7 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      <CountriesList/>
+      Home
     </div>
   )
 }

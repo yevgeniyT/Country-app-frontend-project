@@ -34,3 +34,15 @@ export type CountriesState = {
 export type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 
 //! contriesSlice types ends here
+
+
+//! contryDitailsSlice types starts here
+
+export type CountryDitailsState = {
+    countryDitails: CountriesResponse;
+    loading: boolean;
+    error: boolean;
+    message: string;
+}
+
+//! contryDitailsSlice types ends here
