@@ -2,8 +2,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../app/hooks';
 import { InputChangeHandler } from '../types/types';
 import { useAppDispatch} from '../app/hooks';
-import { search, selectCountry } from '../reducers/counturies/countriesSlice';
-
+import { search} from '../reducers/counturies/countriesSlice';
+import { getCountryDitails } from '../services/api';
+import { Link } from 'react-router-dom';
 
 const CountriesList: React.FC = () => {
 const dispatch = useAppDispatch()    
@@ -39,9 +40,9 @@ return (
                         <img src={country.flags.png} alt={country.flags.alt}/>
                     </td>
                     <td>
-                        <button onClick={()=>dispatch(selectCountry(country.name.official))}>
+                        <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
                         {country.name.official}
-                        </button>
+                        </Link>
                     </td>
                     <td>{country.region}</td>
                     <td>{country.population}</td>

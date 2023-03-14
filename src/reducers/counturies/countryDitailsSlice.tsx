@@ -13,7 +13,8 @@ const INITIAL_STATE: CountryDitailsState = {
 export const countryDitails = createSlice ({
     name: 'countryDitails',
     initialState: INITIAL_STATE,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
         builder
             .addCase (getCountryDitails.pending, (state)=> {
@@ -21,7 +22,7 @@ export const countryDitails = createSlice ({
                 state.message = 'Data is loading'}
             )
             .addCase (getCountryDitails.fulfilled, (state, action) =>{
-                console.log(action.payload);
+                state.countryDitails=action.payload
                 state.loading = false;
                 state.error = false}
             )

@@ -8,8 +8,8 @@ import CountriesList from './CountriesList';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-   
-   useEffect (()=>{
+
+useEffect (()=>{
     dispatch(getCountries())
   }, [dispatch])
 

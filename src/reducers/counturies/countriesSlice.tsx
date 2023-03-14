@@ -11,11 +11,6 @@ const INITIAL_STATE: CountriesState = {
   message: '',
   originalCountrie: []
 }
-//! action creator function to dispatch name to ....
-// export const selectCountry = (country: any) => ({
-//   type: 'countries/selectCountry',
-//   payload: country,
-// });
 
 export const countriesSlice = createSlice ({
   name: 'countries',
@@ -30,10 +25,6 @@ export const countriesSlice = createSlice ({
         country.name.official.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
       )}
     },
-    selectCountry: (state, action) => {
-      console.log(action.payload)
-      
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -58,4 +49,4 @@ export const countriesSlice = createSlice ({
 )
 
 export default countriesSlice.reducer
-export const {search, selectCountry}=countriesSlice.actions
+export const {search}=countriesSlice.actions

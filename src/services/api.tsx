@@ -26,11 +26,11 @@ export const getCountries = createAsyncThunk <CountriesResponse>(
 )
 //! Get countries ditails by name
 
-export const getCountryDitails = createAsyncThunk <CountriesResponse> (
+export const getCountryDitails = createAsyncThunk <CountriesResponse, string> (
     'countries/getCountryDitails',
     async (endpoint) => {
         try {
-            const response	= await axios.get (`${BASE_URL}/'name'/${endpoint}`)
+            const response	= await axios.get (`${BASE_URL}/name/${endpoint}`)
             return response.data
         }
         catch (error) {

@@ -10,6 +10,7 @@ import Home from '../pages/Home'
 import Map from '../pages/Map'
 import Error from '../pages/Error'
 import CountriesList from '../pages/CountriesList'
+import CountryDitails from '../pages/CountryDitails'
 
 type IndexProps ={}
 
@@ -27,6 +28,7 @@ const Index = () => {
             <Route path='/map' element={<Map/>}/>
             <Route path='/countries_list' element={<CountriesList/>}/>
             <Route path='*' element={<Error/>}/>
+            <Route path='/country_ditails' element={<CountryDitails/>}/>
           </Routes>
         </main>
         <footer>
