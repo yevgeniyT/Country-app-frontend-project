@@ -9,8 +9,8 @@ import Favorite from '../pages/Favorite'
 import Home from '../pages/Home'
 import Map from '../pages/Map'
 import Error from '../pages/Error'
-import CountriesList from '../pages/CountriesList'
-import CountryDitails from '../pages/CountryDitails'
+import CountriesList from '../features/CountriesList'
+import CountryDitails from '../features/CountryDitails'
 
 type IndexProps ={}
 

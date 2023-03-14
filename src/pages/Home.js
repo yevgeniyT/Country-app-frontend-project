@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { getCountries } from '../services/api';
 import { useAppDispatch} from '../app/hooks';
-import CountriesList from './CountriesList';
+import CountriesList from '../features/CountriesList';
 
 const Home = () => {
   const dispatch = useAppDispatch();
