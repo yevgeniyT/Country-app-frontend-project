@@ -15,7 +15,7 @@ useEffect (()=>{
 
   return (
     <div>
-      Home
+      <CountriesList/>
     </div>
   )
 }

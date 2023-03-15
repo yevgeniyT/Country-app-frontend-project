@@ -12,8 +12,6 @@ import Error from '../pages/Error'
 import CountriesList from '../features/CountriesList'
 import CountryDitails from '../features/CountryDitails'
 
-type IndexProps ={}
-
 const Index = () => {
   return (
     <div>

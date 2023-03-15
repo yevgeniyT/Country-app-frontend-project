@@ -10,9 +10,6 @@ const Navbar = () => {
             <NavLink to="/favorite">Favorite</NavLink>
           </li>
           <li>
-            <NavLink to="/countries_list">Countries</NavLink>
-          </li>
-          <li>
             <NavLink to="/">Home</NavLink>
           </li>
         </ul>
