@@ -3,19 +3,58 @@ import { ChangeEvent } from 'react';
 //! API types starts
 
 export type Country = {
-    name:{
-        official:string
+    name: {
+    official: string;
+    common: string;
+    nativeName: {
+        [key: string]: {
+        official: string;
+        common: string;
+        };
     };
-    flags:{
-        png:string;
-        alt:string;
     };
-    languages:{
-        [key:string]:string
+    flags: {
+    png: string;
+    alt: string;
     };
-    population:number;
-    region:string
-}
+    languages: {
+    [key: string]: string;
+    };
+    nativeName: {
+        [key: string]:{
+            official: string;
+            common: string
+            }
+    }
+    population: number;
+    region: string;
+    status: string;
+    subregion: string;
+    currencies: {
+    [key: string]: {
+        name: string;
+        symbol: string;
+    };
+    };
+    capital: string[];
+    borders: string[];
+    unMember: boolean;
+    timezones: string[];
+    area: number;
+    gini: {
+    [key: string]: number;
+    };
+    car: {
+    signs: string[];
+    side: string;
+    };
+    postalCode: {
+    format: string;
+    regex: string;
+    };
+};
+
+
 
 export type CountriesResponse = Country[]
 

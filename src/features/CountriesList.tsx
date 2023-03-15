@@ -15,6 +15,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
+import TextField from '@mui/material/TextField';
 
 const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
@@ -27,11 +28,17 @@ const CountriesList: React.FC = () => {
 return (
     <Box>
         <div>
-            <input type='text' placeholder='serch' onChange={handleSerchQuery}/>
+            <TextField
+                    id="standard-search"
+                    label="Search"
+                    type="search"
+                    onChange={handleSerchQuery}
+                />
+            {/* <input type='text' placeholder='serch' onChange={handleSerchQuery}/> */}
         </div>
 
         <TableContainer component={Paper}>
-            <Table>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <th>Flag</th>
