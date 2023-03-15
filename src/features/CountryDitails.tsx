@@ -8,23 +8,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { styled } from '@mui/system';
-// import { Theme } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 
 type ExpandMoreProps = {
   expand: boolean;
 } & IconButtonProps;
-
-// const ExpandMore = styled((props: ExpandMoreProps) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })<{ theme: Theme; expand: boolean }>(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//   duration: theme.transitions.duration.shortest,
-//   }),
-// }));
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
@@ -71,7 +59,7 @@ const CountryDitails: React.FC = () => {
                   alt={country.flags.alt}
               />
               <CardContent>
-                <Typography>{country.name.common}, officially known as {country.name.official}, is a sovereign nation situated in the {country.subregion} subregion of {country.region}. The predominant language spoken in {country.name.common} is {country.languages[Object.keys(country.languages)[0]]}, and the national currency is the {country.currencies[Object.keys(country.currencies)[0]].name}. The country's capital is {country.capital[0]}, and as a member of the United Nations, it plays an active role in international affairs. With a population of {country.population}, {country.name.common} shares its borders with {country.borders.join(', ')}. The rich culture and heritage of {country.name.common} can be experienced throughout the nation, making it an enchanting destination for travelers and global citizens alike.
+                <Typography>{country.name.common}, officially known as {country.name.official}, is a sovereign nation situated in the {country.subregion} subregion of {country.region}. The predominant language spoken in {country.name.common} is {country.languages[Object.keys(country.languages)[0]]}, and the national currency is the {country.currencies[Object.keys(country.currencies)[0]].name}. The country's capital is {country.capital[0]}. With a population of {country.population}, {country.name.common} shares its borders with {country.borders.join(', ')}. The rich culture and heritage of {country.name.common} can be experienced throughout the nation, making it an enchanting destination for travelers and global citizens alike.
                 </Typography>
               </CardContent>
               <CardActions>
