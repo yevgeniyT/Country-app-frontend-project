@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { v4 as uuidv4 } from 'uuid';
+
 
 import { getCountries } from "../../services/api"
 
@@ -33,7 +35,11 @@ export const countriesSlice = createSlice ({
         state.message = 'Data is pending....'}
       )
       .addCase(getCountries.fulfilled, (state, action) =>{
-        state.countries=action.payload;
+        state.countries=action.payload.map((country) => ({
+          ...country,
+          id: uuidv4 ()
+        })
+        )
         state.originalCountrie = action.payload;
         state.loading = false}
       )
@@ -45,7 +51,6 @@ export const countriesSlice = createSlice ({
       })
   }
 }
-
 )
 
 export default countriesSlice.reducer

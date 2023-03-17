@@ -4,6 +4,7 @@ import { useAppDispatch } from '../app/hooks';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { deleteCountry } from '../reducers/counturies/favoriteCountriesSlice';
 
 // MUI imports
 import {
@@ -17,14 +18,20 @@ import {
   Paper,
   Box,
 } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const FavoriteCountriesList = () => {
   const dispatch = useAppDispatch();
   const favoriteList = useAppSelector(
     (state) => state.favoriteCountriesListR.favoriteCountriesList
   );
+
+const handleDelete = (id:string)=>{
+  dispatch(deleteCountry(id))
+  
+}
 
   return (
     <Box>
@@ -75,8 +82,8 @@ const FavoriteCountriesList = () => {
                   </TableCell>
 
                   <TableCell>
-                    <IconButton>
-                      <FavoriteIcon />
+                    <IconButton onClick={()=>handleDelete(country.id)}>
+                      <DeleteIcon />
                     </IconButton>
                   </TableCell>
 
