@@ -5,8 +5,11 @@ import { useAppDispatch} from '../app/hooks';
 import { search} from '../reducers/counturies/countriesSlice';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
+import {addCountryToList} from '../reducers/counturies/favoriteCountriesSlice'
+import {Country} from '../types/types'
 
 //*MUI imports
+import {IconButton} from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,6 +19,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
 import TextField from '@mui/material/TextField';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import InfoIcon from '@mui/icons-material/Info';
 
 const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
@@ -24,6 +29,10 @@ const CountriesList: React.FC = () => {
     const handleSerchQuery: InputChangeHandler = (event) => {
         dispatch(search(event.target.value))
     }
+
+const handleAddToFavorite = (country: Country) =>{
+    dispatch(addCountryToList(country))
+}
 
 return (
     <Box>
@@ -57,13 +66,17 @@ return (
                         <TableCell>
                             <img src={country.flags.png} alt={country.flags.alt}/>
                         </TableCell>
+
                         <TableCell>
                             <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
                             {country.name.official}
                             </Link>
                         </TableCell>
+
                         <TableCell>{country.region}</TableCell>
+
                         <TableCell>{country.population}</TableCell>
+
                         <TableCell> 
                             {Object.values(country.languages).map((language)=>{
                                 return (
@@ -75,8 +88,18 @@ return (
                                 )
                             })}
                         </TableCell>
-                        <TableCell>Fav</TableCell>
-                        <TableCell>Ditails</TableCell>
+
+                        <TableCell>
+                            <IconButton onClick={()=> handleAddToFavorite (country)}>
+                                <FavoriteIcon/>
+                            </IconButton>
+                        </TableCell>
+
+                        <TableCell>
+                        <IconButton >
+                                <InfoIcon/>
+                            </IconButton>
+                        </TableCell>
                     </TableRow>
                     )
                         })

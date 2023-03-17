@@ -14,7 +14,7 @@ import CountryDitails from '../features/CountryDitails'
 
 const Index = () => {
   return (
-    <div>
+    <div >
       <BrowserRouter>
         <header>
           <Navbar/>

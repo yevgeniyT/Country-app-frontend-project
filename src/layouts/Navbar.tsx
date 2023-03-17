@@ -9,6 +9,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import PublicIcon from '@mui/icons-material/Public';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -16,14 +18,61 @@ const Navbar = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
   useState <null | HTMLElement>(null);
 
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
   setMobileMoreAnchorEl(event.currentTarget);
   }
-  
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const renderMobileMenu = (
+   <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton>
+          <PublicIcon/>
+        </IconButton>
+      </MenuItem>
+
+      <MenuItem>
+        <NavLink to="/favorite">
+          <IconButton>
+            <Badge badgeContent={4} color="error">
+              <FavoriteIcon/>
+            </Badge>
+          </IconButton>
+        </NavLink>  
+      </MenuItem>
+
+      <MenuItem>
+        <IconButton>
+          <DarkModeIcon/>
+        </IconButton>
+      </MenuItem>
+
+    </Menu>
+  )
+
   return (
     <Box sx={{flexGrow:1}}>
-      <AppBar position='static'>
+      <AppBar position='sticky'>
         <Toolbar>
+
           <IconButton
             size='large'
             edge='start'
@@ -33,6 +82,13 @@ const Navbar = () => {
           >
             <MenuIcon/>
           </IconButton>
+
+          <NavLink to="/">
+              <IconButton>
+                <HomeIcon/>
+              </IconButton>
+          </NavLink>
+
           <Typography
             variant="h6"
             noWrap
@@ -43,24 +99,23 @@ const Navbar = () => {
           </Typography>
           <Box sx={{flexGrow:1}}>
             <Box sx={{display:{xs:'none', md:'flex'}}}>
-            <NavLink to="/">
-              <IconButton>
-                <HomeIcon/>
-              </IconButton>
-            </NavLink>
+
               <IconButton>
                 <PublicIcon/>
               </IconButton>
+
             <NavLink to="/favorite">
               <IconButton>
-                <Badge>
+                <Badge badgeContent={4} color="error">
                   <FavoriteIcon/>
                 </Badge>
               </IconButton>
             </NavLink>  
+
               <IconButton>
                 <DarkModeIcon/>
               </IconButton>
+
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -77,6 +132,7 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </AppBar>
+      {renderMobileMenu}
     </Box>
   )
 }

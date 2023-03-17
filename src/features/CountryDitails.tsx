@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useAppSelector } from '../app/hooks';
+import { v4 as uuidv4 } from 'uuid';
 
 //*MUI imports
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography, IconButtonProps } from '@mui/material';
@@ -42,7 +43,7 @@ const CountryDitails: React.FC = () => {
     <Box>
       {countryDitailsData.map(country => {
         return (
-          <Card sx={{ maxWidth: 500 }}>
+          <Card key={uuidv4()} sx={{ maxWidth: 500 }}>
               <CardHeader
                 avatar = {
                   <Avatar>

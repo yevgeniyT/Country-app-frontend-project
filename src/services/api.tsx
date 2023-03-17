@@ -31,6 +31,7 @@ export const getCountryDitails = createAsyncThunk <CountriesResponse, string> (
     async (endpoint) => {
         try {
             const response	= await axios.get (`${BASE_URL}/name/${endpoint}`)
+         
             return response.data
         }
         catch (error) {
