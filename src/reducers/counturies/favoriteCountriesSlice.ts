@@ -14,9 +14,7 @@ export const favoriteCountriesList = createSlice ({
         },
         deleteCountry: (state, action) => {
             state.favoriteCountriesList = state.favoriteCountriesList.filter((country)=>country.id !== action.payload)
-            
         }
-
     },
 
 })

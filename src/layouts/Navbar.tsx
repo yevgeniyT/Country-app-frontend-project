@@ -1,6 +1,8 @@
 import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material'
 import React, {useState,} from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAppSelector } from '../app/hooks';
+
 
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
@@ -13,6 +15,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
+  const favoriteCountriesCount = useAppSelector(
+    (state) => state.favoriteCountriesListR.favoriteCountriesList.length
+  );
+  
+
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -52,7 +59,7 @@ const Navbar = () => {
       <MenuItem>
         <NavLink to="/favorite">
           <IconButton>
-            <Badge badgeContent={4} color="error">
+            <Badge badgeContent={favoriteCountriesCount} color="error">
               <FavoriteIcon/>
             </Badge>
           </IconButton>
@@ -106,7 +113,7 @@ const Navbar = () => {
 
             <NavLink to="/favorite">
               <IconButton>
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={favoriteCountriesCount} color="error">
                   <FavoriteIcon/>
                 </Badge>
               </IconButton>
