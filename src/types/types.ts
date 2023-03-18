@@ -73,8 +73,6 @@ export type CountriesState = {
 
 export type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 
-//! contriesSlice types ends here
-
 
 //! contryDitailsSlice types starts here
 
@@ -85,4 +83,9 @@ export type CountryDitailsState = {
     message: string;
 }
 
-//! contryDitailsSlice types ends here
+
+//! themeSlice types starts here
+
+export type ThemeState ={
+    darkMode:boolean
+}

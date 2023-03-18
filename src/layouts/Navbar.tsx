@@ -2,7 +2,8 @@ import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material'
 import React, {useState,} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../app/hooks';
-
+import { useAppDispatch } from '../app/hooks';
+import {toggleDarkMode} from '../reducers/counturies/themeSlice'
 
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
@@ -15,10 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
+
+  const dispatch = useAppDispatch();
+
   const favoriteCountriesCount = useAppSelector(
     (state) => state.favoriteCountriesListR.favoriteCountriesList.length
   );
-  
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
@@ -34,8 +37,12 @@ const Navbar = () => {
     setMobileMoreAnchorEl(null);
   };
 
+  const handleSwitchMode =()=>{
+    dispatch(toggleDarkMode())
+  }
+
   const renderMobileMenu = (
-   <Menu
+  <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -72,9 +79,8 @@ const Navbar = () => {
         </IconButton>
       </MenuItem>
 
-    </Menu>
+  </Menu>
   )
-
   return (
     <Box sx={{flexGrow:1}}>
       <AppBar position='sticky'>
@@ -119,7 +125,7 @@ const Navbar = () => {
               </IconButton>
             </NavLink>  
 
-              <IconButton>
+              <IconButton onClick={handleSwitchMode}>
                 <DarkModeIcon/>
               </IconButton>
 

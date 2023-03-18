@@ -43,7 +43,6 @@ return (
                     type="search"
                     onChange={handleSerchQuery}
                 />
-            {/* <input type='text' placeholder='serch' onChange={handleSerchQuery}/> */}
         </div>
 
         <TableContainer component={Paper}>
@@ -97,8 +96,12 @@ return (
 
                         <TableCell>
                         <IconButton >
-                                <InfoIcon/>
-                            </IconButton>
+                            <Link
+                                to="/country_ditails"
+                                >
+                                <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                            </Link>
+                        </IconButton>
                         </TableCell>
                     </TableRow>
                     )
@@ -112,3 +115,4 @@ return (
 }
 
 export default CountriesList
+

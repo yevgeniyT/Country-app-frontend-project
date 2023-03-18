@@ -21,4 +21,3 @@ export const favoriteCountriesList = createSlice ({
 
 export const { addCountryToList, deleteCountry } = favoriteCountriesList.actions;
 export default favoriteCountriesList.reducer
-

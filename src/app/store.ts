@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import countryReducer from '../reducers/counturies/countriesSlice'
 import countryDitails from '../reducers/counturies/countryDitailsSlice'
 import favoriteCountries from '../reducers/counturies/favoriteCountriesSlice'
+import themeSelector from '../reducers/counturies/themeSlice'
 
 export const store = configureStore({
   reducer: {
     countryR:countryReducer,
     countryDitailsR: countryDitails,
-    favoriteCountriesListR: favoriteCountries
+    favoriteCountriesListR: favoriteCountries,
+    themeSelectorR: themeSelector
   },
   // devTools: process.env.NODE_ENV !== 'production',
 })
