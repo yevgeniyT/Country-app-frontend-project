@@ -33,6 +33,17 @@ const CountriesList: React.FC = () => {
 const handleAddToFavorite = (country: Country) =>{
     dispatch(addCountryToList(country))
 }
+//* change colore of favorite icon based on condition if the county in favorite list
+    //*get the store in this component
+
+const favoriteCountries = useAppSelector((state)=>state.favoriteCountriesListR.favoriteCountriesList)
+
+    //* add fanction to check is the county in list
+
+const isCountryFavorite = (country:Country) =>{
+    return favoriteCountries.some(favoriteCountry=>favoriteCountry.name.official===country.name.official)
+    
+}
 
 return (
     <Box>
@@ -90,7 +101,7 @@ return (
 
                         <TableCell>
                             <IconButton onClick={()=> handleAddToFavorite (country)}>
-                                <FavoriteIcon/>
+                                <FavoriteIcon color={isCountryFavorite(country)? 'secondary': 'action'}/>
                             </IconButton>
                         </TableCell>
 
