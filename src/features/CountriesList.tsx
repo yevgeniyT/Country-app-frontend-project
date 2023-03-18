@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 import {addCountryToList} from '../reducers/counturies/favoriteCountriesSlice'
 import {Country} from '../types/types'
 
+//*Message imports
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //*MUI imports
 import {IconButton} from '@mui/material';
 import Table from '@mui/material/Table';
@@ -31,8 +35,13 @@ const CountriesList: React.FC = () => {
     }
 
 const handleAddToFavorite = (country: Country) =>{
-    dispatch(addCountryToList(country))
-}
+    if (isCountryFavorite(country)){
+        toast.error(`${country.name.official} is already in your favoriets`)
+    } else {
+        dispatch(addCountryToList(country))
+        toast.success(`${country.name.official} has been added to your favoriets`)
+    }}
+    
 //* change colore of favorite icon based on condition if the county in favorite list
     //*get the store in this component
 
@@ -47,6 +56,7 @@ const isCountryFavorite = (country:Country) =>{
 
 return (
     <Box>
+        <ToastContainer />
         <div>
             <TextField
                     id="standard-search"
