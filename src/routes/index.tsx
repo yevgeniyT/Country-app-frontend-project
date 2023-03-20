@@ -25,8 +25,8 @@ const Index = () => {
             <Route path='/favorite' element={<Favorite/>}/>
             <Route path='/map' element={<Map/>}/>
             <Route path='/countries_list' element={<CountriesList/>}/>
-            <Route path='*' element={<Error/>}/>
             <Route path='/country_ditails' element={<CountryDitails/>}/>
+            <Route path='*' element={<Error/>}/>
           </Routes>
         </main>
         <footer>

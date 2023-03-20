@@ -21,7 +21,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box } from '@mui/system';
+import { Box, SxProps } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
@@ -53,11 +53,20 @@ const isCountryFavorite = (country:Country) =>{
     return favoriteCountries.some(favoriteCountry=>favoriteCountry.name.official===country.name.official)
     
 }
+const tableContainerSx: SxProps = {
+    border: "1px solid rgba(128,128,128,0.4)",
+    width: "max-content",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 4,
+    borderRadius: 2,
+    maxHeight: 1000
+  }
 
 return (
     <Box>
         <ToastContainer />
-        <div>
+        <div className='serch-input'>
             <TextField
                     id="standard-search"
                     label="Search"
@@ -66,74 +75,82 @@ return (
                 />
         </div>
 
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <th>Flag</th>
-                        <th>Name</th>
-                        <th>Region</th>
-                        <th>Population</th>
-                        <th>Languages</th>
-                        <th> </th>
-                        <th></th>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {countryData.map((country)=> {
-                    return (
-                    <TableRow key={uuidv4()}>
-                        <TableCell>
-                            <img src={country.flags.png} alt={country.flags.alt}/>
-                        </TableCell>
+        <Paper sx={{width:'100%', overflow:'hidden'}}>
+            <TableContainer sx={tableContainerSx}>
+                <Table stickyHeader={true} aria-label="country list table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Flag</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Region</TableCell>
+                            <TableCell>Population</TableCell>
+                            <TableCell>Languages</TableCell>
+                            <TableCell> </TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody
+                        sx={{
+                            "& tr:nth-of-type(2n+1)": {
+                            backgroundColor: "grey.100",
+                            },
+                        }}
+                    >
+                        {countryData.map((country)=> {
+                        return (
+                        <TableRow key={uuidv4()}>
+                            <TableCell align='center'>
+                                <img src={country.flags.png} alt={country.flags.alt}/>
+                            </TableCell>
 
-                        <TableCell>
-                            <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
-                            {country.name.official}
-                            </Link>
-                        </TableCell>
+                            <TableCell align='center'>
+                                <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
+                                {country.name.official}
+                                </Link>
+                            </TableCell>
 
-                        <TableCell>{country.region}</TableCell>
+                            <TableCell align='center'>{country.region}</TableCell>
 
-                        <TableCell>{country.population}</TableCell>
+                            <TableCell align='center'>{country.population}</TableCell>
 
-                        <TableCell> 
-                            {Object.values(country.languages).map((language)=>{
-                                return (
-                                    <ul key={uuidv4()}>
-                                        <li>
-                                            {language}
-                                        </li>
-                                    </ul>
-                                )
-                            })}
-                        </TableCell>
+                            <TableCell align='center'> 
+                                {Object.values(country.languages).map((language)=>{
+                                    return (
+                                        <ul key={uuidv4()}>
+                                            <li>
+                                                {language}
+                                            </li>
+                                        </ul>
+                                    )
+                                })}
+                            </TableCell>
 
-                        <TableCell>
-                            <IconButton onClick={()=> handleAddToFavorite (country)}>
-                                <FavoriteIcon color={isCountryFavorite(country)? 'secondary': 'action'}/>
+                            <TableCell align='center'>
+                                <IconButton onClick={()=> handleAddToFavorite (country)}>
+                                    <FavoriteIcon color={isCountryFavorite(country)? 'secondary': 'action'}/>
+                                </IconButton>
+                            </TableCell>
+
+                            <TableCell align='center'>
+                            <IconButton >
+                                <Link
+                                    to="/country_ditails"
+                                    >
+                                    <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                                </Link>
                             </IconButton>
-                        </TableCell>
-
-                        <TableCell>
-                        <IconButton >
-                            <Link
-                                to="/country_ditails"
-                                >
-                                <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
-                            </Link>
-                        </IconButton>
-                        </TableCell>
-                    </TableRow>
-                    )
-                        })
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
+                            </TableCell>
+                        </TableRow>
+                        )
+                            })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
+        
     </Box>
 )
 }
 
 export default CountriesList
-

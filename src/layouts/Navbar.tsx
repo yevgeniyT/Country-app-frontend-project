@@ -5,31 +5,28 @@ import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
 import {toggleDarkMode} from '../reducers/counturies/themeSlice'
 
-import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PublicIcon from '@mui/icons-material/Public';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
-
   const dispatch = useAppDispatch();
 
   const favoriteCountriesCount = useAppSelector(
     (state) => state.favoriteCountriesListR.favoriteCountriesList.length
   );
+  const darkMode = useAppSelector((state) => state.themeSelectorR.darkMode);
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
   useState <null | HTMLElement>(null);
-
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
   setMobileMoreAnchorEl(event.currentTarget);
   }
@@ -58,6 +55,14 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
+        <NavLink to="/">
+          <IconButton>
+            <HomeIcon/>
+          </IconButton>
+        </NavLink>
+      </MenuItem>
+
+      <MenuItem>
         <IconButton>
           <PublicIcon/>
         </IconButton>
@@ -74,9 +79,16 @@ const Navbar = () => {
       </MenuItem>
 
       <MenuItem>
-        <IconButton>
-          <DarkModeIcon/>
-        </IconButton>
+        {darkMode ? (
+          <IconButton onClick={handleSwitchMode}>
+            <LightModeIcon />
+          </IconButton>
+            ) : (
+          <IconButton onClick={handleSwitchMode}>
+            <DarkModeIcon />
+          </IconButton>
+          )
+        }
       </MenuItem>
 
   </Menu>
@@ -86,37 +98,27 @@ const Navbar = () => {
       <AppBar position='sticky'>
         <Toolbar>
 
-          <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            sx={{mr:2}}
-          >
-            <MenuIcon/>
-          </IconButton>
-
-          <NavLink to="/">
-              <IconButton>
-                <HomeIcon/>
-              </IconButton>
-          </NavLink>
-
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Countries
+            Country Explorer App
           </Typography>
           <Box sx={{flexGrow:1}}>
-            <Box sx={{display:{xs:'none', md:'flex'}}}>
-
+            <Box sx={{ display: { xs: 'none', md: 'flex' },
+                    justifyContent: 'flex-end',
+                    flexDirection: 'row',
+                    gap: 1.5}}>
+            <NavLink to="/">
+              <IconButton>
+                <HomeIcon/>
+              </IconButton>
+            </NavLink>
               <IconButton>
                 <PublicIcon/>
               </IconButton>
-
             <NavLink to="/favorite">
               <IconButton>
                 <Badge badgeContent={favoriteCountriesCount} color="error">
@@ -125,9 +127,16 @@ const Navbar = () => {
               </IconButton>
             </NavLink>  
 
+            {darkMode ? (
               <IconButton onClick={handleSwitchMode}>
-                <DarkModeIcon/>
+                <LightModeIcon />
               </IconButton>
+              ) : (
+              <IconButton onClick={handleSwitchMode}>
+                <DarkModeIcon />
+              </IconButton>
+              )
+            }
 
             </Box>
           </Box>

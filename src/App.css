@@ -12,31 +12,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 
-.App {
-  text-align: center;
+.app {
+  width: 80%;
 }
 
-/* Header starts here */
-
-/* header {
-  height: 10vh;
-} */
-
-/* Headder ends here */
-
-/* Main starts here */
-/* main {
-  height: 80vh;
-} */
-
-/* Main ends here */
-
-
-/* Footer starts here */
-/* footer {
-  height: 10vh;
-} */
-
-/* Footer ends here */
-/* Index.css */
+.serch-input {
+  margin-top: 2rem;
+}

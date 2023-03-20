@@ -26,9 +26,11 @@ function App() {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <PersistGate loading={null} persistor={persistor}>
-        <Paper>
-          <Index />
-        </Paper>
+        <div className='main-container'>
+          <Paper className='app'>
+            <Index />
+          </Paper>
+        </div>
       </PersistGate>
     </ThemeProvider>
   );
