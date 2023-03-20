@@ -12,7 +12,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.main-container {
+.centered {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,4 +24,14 @@ html {
 
 .serch-input {
   margin-top: 2rem;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* Favorite countrie page */
+.main-heading {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }

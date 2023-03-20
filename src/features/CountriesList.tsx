@@ -1,8 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../app/hooks';
-import { InputChangeHandler } from '../types/types';
 import { useAppDispatch} from '../app/hooks';
-import { search} from '../reducers/counturies/countriesSlice';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import {addCountryToList} from '../reducers/counturies/favoriteCountriesSlice'
@@ -22,7 +20,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box, SxProps } from '@mui/system';
-import TextField from '@mui/material/TextField';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -30,10 +27,6 @@ const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
     const countryData = useAppSelector ((state)=>state.countryR.countries)
     
-    const handleSerchQuery: InputChangeHandler = (event) => {
-        dispatch(search(event.target.value))
-    }
-
 const handleAddToFavorite = (country: Country) =>{
     if (isCountryFavorite(country)){
         toast.error(`${country.name.official} is already in your favoriets`)
@@ -58,52 +51,40 @@ const tableContainerSx: SxProps = {
     width: "max-content",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 4,
+    marginTop: 2,
     borderRadius: 2,
     maxHeight: 1000
-  }
-
+}
 return (
     <Box>
         <ToastContainer />
-        <div className='serch-input'>
-            <TextField
-                    id="standard-search"
-                    label="Search"
-                    type="search"
-                    onChange={handleSerchQuery}
-                />
-        </div>
-
         <Paper sx={{width:'100%', overflow:'hidden'}}>
             <TableContainer sx={tableContainerSx}>
                 <Table stickyHeader={true} aria-label="country list table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Flag</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Region</TableCell>
-                            <TableCell>Population</TableCell>
-                            <TableCell>Languages</TableCell>
-                            <TableCell> </TableCell>
-                            <TableCell></TableCell>
+                            <TableCell align='center' width='200'>Flag</TableCell>
+                            <TableCell align='center' width='200'>Name</TableCell>
+                            <TableCell align='center' width='200'>Region</TableCell>
+                            <TableCell align='center' width='200'>Population</TableCell>
+                            <TableCell align='center' width='200'>Languages</TableCell>
+                            <TableCell align='center' width='100'> </TableCell>
+                            <TableCell align='center' width='100'></TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody
-                        sx={{
-                            "& tr:nth-of-type(2n+1)": {
-                            backgroundColor: "grey.100",
-                            },
-                        }}
-                    >
+                    <TableBody>
                         {countryData.map((country)=> {
                         return (
                         <TableRow key={uuidv4()}>
-                            <TableCell align='center'>
+                            <TableCell 
+                            align='center'
+                        >
                                 <img src={country.flags.png} alt={country.flags.alt}/>
                             </TableCell>
 
-                            <TableCell align='center'>
+                            <TableCell
+                            align='center' 
+                            >
                                 <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
                                 {country.name.official}
                                 </Link>

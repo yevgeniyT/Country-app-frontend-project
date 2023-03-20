@@ -18,6 +18,7 @@ import {
   TableRow,
   Paper,
   Box,
+  SxProps,
 } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -33,31 +34,43 @@ const handleDelete = (id:string)=>{
   dispatch(deleteCountry(id))
   
 }
+const tableContainerSx: SxProps = {
+  border: "1px solid rgba(128,128,128,0.4)",
+  width: "max-content",
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginTop: 2,
+  borderRadius: 2,
+  maxHeight: 1000
+}
 
   return (
     <Box>
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        sx={tableContainerSx}
+      >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <th>Flag</th>
-              <th>Name</th>
-              <th>Region</th>
-              <th>Population</th>
-              <th>Languages</th>
-              <th> </th>
-              <th></th>
+              <TableCell align='center' width='200'>Flag</TableCell>
+              <TableCell align='center' width='200'>Name</TableCell>
+              <TableCell align='center' width='200'>Region</TableCell>
+              <TableCell align='center' width='200'>Population</TableCell>
+              <TableCell align='center' width='200'>Languages</TableCell>
+              <TableCell align='center' width='100'> </TableCell>
+              <TableCell align='center' width='100'></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {favoriteList.map((country) => {
               return (
                 <TableRow key={uuidv4()}>
-                  <TableCell>
+                  <TableCell align='center'>
                     <img src={country.flags.png} alt={country.flags.alt} />
                   </TableCell>
 
-                  <TableCell>
+                  <TableCell align='center'>
                     <Link
                       to="/country_ditails"
                       onClick={() =>
@@ -68,11 +81,11 @@ const handleDelete = (id:string)=>{
                     </Link>
                   </TableCell>
 
-                  <TableCell>{country.region}</TableCell>
+                  <TableCell align='center'>{country.region}</TableCell>
 
-                  <TableCell>{country.population}</TableCell>
+                  <TableCell align='center'>{country.population}</TableCell>
 
-                  <TableCell>
+                  <TableCell align='center'>
                     {Object.values(country.languages).map((language) => {
                       return (
                         <ul key={uuidv4()}>
@@ -82,15 +95,19 @@ const handleDelete = (id:string)=>{
                     })}
                   </TableCell>
 
-                  <TableCell>
+                  <TableCell align='center'>
                     <IconButton onClick={()=>handleDelete(country.id)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
 
-                  <TableCell>
+                  <TableCell align='center'>
                     <IconButton>
-                      <InfoIcon />
+                      <Link
+                        to="/country_ditails"
+                      >
+                          <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                      </Link>
                     </IconButton>
                   </TableCell>
                 </TableRow>
