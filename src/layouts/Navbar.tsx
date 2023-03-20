@@ -1,5 +1,5 @@
 import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material'
-import React, {useState,} from 'react'
+import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
@@ -19,6 +19,8 @@ import Menu from '@mui/material/Menu';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate} from 'react-router-dom';
+
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -95,7 +97,6 @@ const Navbar = () => {
           )
         }
       </MenuItem>
-
   </Menu>
   )
 
@@ -130,7 +131,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -143,7 +143,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const handleSerchQuery: InputChangeHandler = (event) => {
   dispatch(search(event.target.value))
 }
-
 
   return (
     <Box sx={{flexGrow:1}}>

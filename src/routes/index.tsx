@@ -29,9 +29,7 @@ const Index = () => {
             <Route path='*' element={<Error/>}/>
           </Routes>
         </main>
-        <footer>
           <Footer/>
-        </footer>
       </BrowserRouter>
     </div>
   )

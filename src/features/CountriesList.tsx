@@ -22,6 +22,7 @@ import Paper from '@mui/material/Paper';
 import { Box, SxProps } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
+import { styled } from '@mui/system';
 
 const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
@@ -55,6 +56,14 @@ const tableContainerSx: SxProps = {
     borderRadius: 2,
     maxHeight: 1000
 }
+const StyledLink = styled(Link)({
+    textDecoration: 'none',
+    color: 'inherit', // Inherit color from parent element
+    '&:hover': {
+    textDecoration: 'none',
+    color: 'primary.main',
+    },
+});
 return (
     <Box>
         <ToastContainer />
@@ -63,13 +72,13 @@ return (
                 <Table stickyHeader={true} aria-label="country list table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align='center' width='200'>Flag</TableCell>
-                            <TableCell align='center' width='200'>Name</TableCell>
-                            <TableCell align='center' width='200'>Region</TableCell>
-                            <TableCell align='center' width='200'>Population</TableCell>
-                            <TableCell align='center' width='200'>Languages</TableCell>
-                            <TableCell align='center' width='100'> </TableCell>
-                            <TableCell align='center' width='100'></TableCell>
+                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Flag</TableCell>
+                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Name</TableCell>
+                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Region</TableCell>
+                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Population</TableCell>
+                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Languages</TableCell>
+                            <TableCell align='center' width='100' classes={{ head: 'head' }}> </TableCell>
+                            <TableCell align='center' width='100' classes={{ head: 'head' }}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -85,9 +94,12 @@ return (
                             <TableCell
                             align='center' 
                             >
-                                <Link to="/country_ditails" onClick={()=>dispatch(getCountryDitails(country.name.official))}>
+                                <StyledLink
+                                    to="/country_ditails"
+                                    onClick={()=>dispatch(getCountryDitails(country.name.official))}
+                                >
                                 {country.name.official}
-                                </Link>
+                                </StyledLink>
                             </TableCell>
 
                             <TableCell align='center'>{country.region}</TableCell>
@@ -108,17 +120,17 @@ return (
 
                             <TableCell align='center'>
                                 <IconButton onClick={()=> handleAddToFavorite (country)}>
-                                    <FavoriteIcon color={isCountryFavorite(country)? 'secondary': 'action'}/>
+                                    <FavoriteIcon color={isCountryFavorite(country)? 'error': 'action'}/>
                                 </IconButton>
                             </TableCell>
 
                             <TableCell align='center'>
                             <IconButton >
-                                <Link
+                                <StyledLink
                                     to="/country_ditails"
-                                    >
+                                >
                                     <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
-                                </Link>
+                                </StyledLink>
                             </IconButton>
                             </TableCell>
                         </TableRow>

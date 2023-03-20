@@ -9,18 +9,49 @@ import { persistor } from './app/store';
 
 
 function App() {
-  const lightTheme = createTheme ({
-    palette:{
-      mode:'light'
-    }
-  })
-
-  const darkTheme = createTheme ({
-    palette:{
-      mode:'dark'
-    }
-  })
-
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light",
+    },
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          color: "primary",
+        },
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          head: {
+            backgroundColor: "#3f51b5",
+            color: "#ffffff",
+          },
+        },
+      },
+    },
+  });
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          color: "primary",
+        },
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          head: {
+            backgroundColor: "#303f9f",
+            color: "#ffffff",
+          },
+        },
+      },
+    },
+  });
+  
+  
   const darkMode = useAppSelector ((state)=>state.themeSelectorR.darkMode)
 
   return (

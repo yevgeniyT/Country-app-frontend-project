@@ -3,7 +3,7 @@ import { useAppSelector } from '../app/hooks';
 import { v4 as uuidv4 } from 'uuid';
 
 //*MUI imports
-import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography, IconButtonProps } from '@mui/material';
+import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography, IconButtonProps, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -43,14 +43,20 @@ const CountryDitails: React.FC = () => {
     <Box>
       {countryDitailsData.map(country => {
         return (
-          <Card key={uuidv4()} sx={{ maxWidth: 500 }}>
+        <Paper sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }} >
+          <Card key={uuidv4()}
+                sx={{ maxWidth: '50%' }}>
               <CardHeader
                 avatar = {
                   <Avatar>
                     IMG
                   </Avatar>
                 }
-                title = {country.name.official}
+                title = {`${country.name.official} (${country.capital[0]}) `} 
                 subheader={`TimeZone: ${country.timezones[0]} | Language: ${country.languages[Object.keys(country.languages)[0]]} | Currency: ${country.currencies[Object.keys(country.currencies)[0]].name}`}
               />
               <CardMedia
@@ -109,6 +115,7 @@ const CountryDitails: React.FC = () => {
                 </CardContent>
               </Collapse>
           </Card>
+         </Paper>
         )
       })}
     </Box>
