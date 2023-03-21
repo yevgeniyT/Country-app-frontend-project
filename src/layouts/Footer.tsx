@@ -1,4 +1,4 @@
-import { AppBar,Box, IconButton, Paper, Toolbar } from '@mui/material'
+import { AppBar,Box, IconButton, Toolbar } from '@mui/material'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -26,13 +26,13 @@ const Footer = () => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+              sx={{ display: { xs: 'none', sm: 'block' }, fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1.0rem', lg: '1.2rem', xl: '1.4rem'} }}
             >
               © {2023} All rights reserved. Developed by Yevgeniy Tolkachev
             </Typography>
             <Box sx={{flexGrow:1}}>
               <Box sx={{ display: { xs: 'flex', md: 'flex' },
-                      justifyContent: 'flex-end',
+                      justifyContent: { xs: 'center', sm: 'flex-end' },
                       flexDirection: 'row',
                       gap: 1.5}}>
               <NavLink to="/">
