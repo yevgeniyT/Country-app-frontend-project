@@ -1,5 +1,5 @@
 import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
@@ -19,7 +19,6 @@ import Menu from '@mui/material/Menu';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate} from 'react-router-dom';
 
 
 const Navbar = () => {

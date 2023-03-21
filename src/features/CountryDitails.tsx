@@ -5,11 +5,12 @@ import { v4 as uuidv4 } from 'uuid';
 //*MUI imports
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography, IconButtonProps, Paper } from '@mui/material';
 import { Box } from '@mui/system';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { styled } from '@mui/system';
 import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 type ExpandMoreProps = {
   expand: boolean;
@@ -38,12 +39,14 @@ const CountryDitails: React.FC = () => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  
   return (
     <Box>
-      {countryDitailsData.map(country => {
+      {countryDitailsData.map(country => {        
         return (
-        <Paper sx={{
+        <Paper
+        key={uuidv4()}
+        sx={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center'
@@ -52,8 +55,10 @@ const CountryDitails: React.FC = () => {
                 sx={{ maxWidth: '50%' }}>
               <CardHeader
                 avatar = {
-                  <Avatar>
-                    IMG
+                  <Avatar
+                  src={country.flags.png}
+                  alt={country.flags.alt}
+                  >
                   </Avatar>
                 }
                 title = {`${country.name.official} (${country.capital[0]}) `} 
@@ -70,21 +75,29 @@ const CountryDitails: React.FC = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-
+              <Link to="/">
                 <IconButton>
-                  <FavoriteIcon/>
+                  <ArrowBackIcon />
                 </IconButton>
-
-                <IconButton>
-                  <LocationOnIcon/>
-                </IconButton>
-                
-                <ExpandMore
-                  expand ={expanded}  
-                  onClick={handleExpandClick}
+              </Link>
+                <Box ml='auto'>
+                { <a
+                  href={country.maps.openStreetMaps}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <ExpandMoreIcon/>
-                </ExpandMore>
+                  <IconButton>
+                    <LocationOnIcon />
+                  </IconButton>
+                </a>}
+                  
+                  <ExpandMore
+                    expand ={expanded}  
+                    onClick={handleExpandClick}
+                  >
+                    <ExpandMoreIcon/>
+                  </ExpandMore>
+                </Box>
               </CardActions>
 
               <Collapse in={expanded} timeout="auto" unmountOnExit>

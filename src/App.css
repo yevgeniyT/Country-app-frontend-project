@@ -24,7 +24,7 @@ main {
   }
 
 .app {
-  width: 100%;
+  width: 90%;
 }
 
 .serch-input {
@@ -33,6 +33,7 @@ main {
 img {
   width: 100%;
   height: auto;
+  object-fit: 'contain'
 }
 
 /* Favorite countrie page */

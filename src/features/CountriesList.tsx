@@ -1,3 +1,4 @@
+
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch} from '../app/hooks';
@@ -7,6 +8,7 @@ import {addCountryToList} from '../reducers/counturies/favoriteCountriesSlice'
 import {Country} from '../types/types'
 import Loading from '../pages/loading';
 import ErrorFetch from '../pages/ErrorFetch';
+import NoDataFound from '../pages/NoDataFound';
 
 //*Message imports
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,6 +27,7 @@ import { Box, SxProps } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
 import { styled } from '@mui/system';
+
 
 const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
@@ -54,21 +57,23 @@ const isCountryFavorite = (country:Country) =>{
 }
 const tableContainerSx: SxProps = {
     border: "1px solid rgba(128,128,128,0.4)",
-    width: "max-content",
+    width: '100%',
+    maxWidth: "max-content",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 2,
     borderRadius: 2,
-    maxHeight: 'calc(100vh - 110px - 40px)'
+    maxHeight: 'calc(100vh - 110px - 40px)',
 }
 const StyledLink = styled(Link)({
     textDecoration: 'none',
-    color: 'inherit', // Inherit color from parent element
+    color: 'inherit', 
     '&:hover': {
     textDecoration: 'none',
     color: 'primary.main',
     },
 });
+
 if(isLoading) {
     return <Loading/>
 }
@@ -76,6 +81,9 @@ if(isError) {
     return <ErrorFetch/>
 }
 
+if (countryData.length === 0) {
+    return <NoDataFound />;
+}
 return (
     <Box>
         <ToastContainer />
@@ -84,27 +92,37 @@ return (
                 <Table stickyHeader={true} aria-label="country list table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Flag</TableCell>
-                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Name</TableCell>
-                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Region</TableCell>
-                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Population</TableCell>
-                            <TableCell align='center' width='200' classes={{ head: 'head' }}>Languages</TableCell>
-                            <TableCell align='center' width='100' classes={{ head: 'head' }}>Add to list</TableCell>
-                            <TableCell align='center' width='100' classes={{ head: 'head' }}>Ditails</TableCell>
+                            <TableCell align='center' width='150' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Flag</TableCell>
+
+                            <TableCell align='center' width='300' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}} >Name</TableCell>
+
+                            <TableCell align='center' width='300' classes={{ head: 'head' }}sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Region</TableCell>
+
+                            <TableCell align='center' width='300' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Population</TableCell>
+
+                            <TableCell align='center' width='300' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Languages</TableCell>
+                            <TableCell align='center' width='250' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Favorite</TableCell>
+
+                            <TableCell align='center' width='250' classes={{ head: 'head' }} sx={{ padding: { xs: '4px', sm: '8px',md: '16px'}, fontSize: {xs:'0.8rem', sm: '1rem', md:'1.2rem', lg: '1.4rem', xl: '1.6rem'}}}>Ditails</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {countryData.map((country)=> {
                         return (
-                        <TableRow key={uuidv4()}>
+                        <TableRow
+                            key={uuidv4()}
+                        >
                             <TableCell 
                             align='center'
-                        >
+                            sx={{ padding: { xs: '0.5px', sm: '4px' },  }}
+                            >
                                 <img src={country.flags.png} alt={country.flags.alt}/>
                             </TableCell>
 
                             <TableCell
-                            align='center' 
+                            align='center'
+                            sx={{ padding: { xs: '2px', sm: '4px' },fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1rem', lg: '1.2rem', xl: '1.4rem'} }}
                             >
                                 <StyledLink
                                     to="/country_ditails"
@@ -114,11 +132,24 @@ return (
                                 </StyledLink>
                             </TableCell>
 
-                            <TableCell align='center'>{country.region}</TableCell>
+                            <TableCell
+                                align='center'
+                                sx={{ padding: { xs: '2px', sm: '4px' }, fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1rem', lg: '1.2rem', xl: '1.4rem'} }}
+                            >
+                                {country.region}
+                            </TableCell>
 
-                            <TableCell align='center'>{country.population}</TableCell>
+                            <TableCell
+                                align='center'
+                                sx={{ padding: { xs: '2px', sm: '4px' },fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1rem', lg: '1.2rem', xl: '1.4rem'} }}
+                            >
+                                {country.population}
+                            </TableCell>
 
-                            <TableCell align='center'> 
+                            <TableCell
+                                align='center'
+                                sx={{ padding: { xs: '2px', sm: '4px' },fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1rem', lg: '1.2rem', xl: '1.4rem'} }}
+                            > 
                                 {Object.values(country.languages).map((language)=>{
                                     return (
                                         <ul key={uuidv4()}>
@@ -130,18 +161,24 @@ return (
                                 })}
                             </TableCell>
 
-                            <TableCell align='center'>
+                            <TableCell
+                                align='center'
+                                sx={{ padding: { xs: '2px', sm: '4px' }}}
+                            >
                                 <IconButton onClick={()=> handleAddToFavorite (country)}>
-                                    <FavoriteIcon color={isCountryFavorite(country)? 'error': 'action'}/>
+                                    <FavoriteIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '3rem'}}}  color={isCountryFavorite(country)? 'error': 'action'}/>
                                 </IconButton>
                             </TableCell>
 
-                            <TableCell align='center'>
+                            <TableCell
+                                align='center'
+                                sx={{ padding: { xs: '2px', sm: '4px' } }}
+                            >
                             <IconButton >
                                 <StyledLink
                                     to="/country_ditails"
                                 >
-                                    <InfoIcon onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                                    <InfoIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '3rem'}}} onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
                                 </StyledLink>
                             </IconButton>
                             </TableCell>
@@ -152,6 +189,7 @@ return (
                     </TableBody>
                 </Table>
             </TableContainer>
+       
         </Paper>
         
     </Box>

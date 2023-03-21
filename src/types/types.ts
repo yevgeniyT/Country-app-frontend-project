@@ -52,7 +52,11 @@ export type Country = {
     format: string;
     regex: string;
     };
-    id: string
+    id: string;
+    maps: {
+        googleMaps:string;
+        openStreetMaps:string
+    }
 };
 
 

@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['favoriteCountriesListR'] // Persist only the favoriteCountriesListR slice
+  whitelist: ['favoriteCountriesListR', 'countryDitailsR'] 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -27,7 +27,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        // Ignore these action types
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE', 'persist/REGISTER'],
       },
     }),

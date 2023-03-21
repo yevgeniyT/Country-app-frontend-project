@@ -20,7 +20,7 @@ const Footer = () => {
           alignItems: 'center'
         }}>
           <Toolbar sx={{
-            width:'60%',
+            width:'100%',
           }}>
             <Typography
               variant="h6"
@@ -28,7 +28,7 @@ const Footer = () => {
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              {'Copyright © '} Yevgeniy Tolkachev 2023
+              © {2023} All rights reserved. Developed by Yevgeniy Tolkachev
             </Typography>
             <Box sx={{flexGrow:1}}>
               <Box sx={{ display: { xs: 'flex', md: 'flex' },
