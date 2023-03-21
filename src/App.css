@@ -8,8 +8,13 @@
   font-family: "Teko", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  height: 100%;
+}
+
+main {
+  flex:1;
 }
 
 .centered {
@@ -19,7 +24,7 @@ html {
   }
 
 .app {
-  width: 80%;
+  width: 100%;
 }
 
 .serch-input {
@@ -35,3 +40,13 @@ img {
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
+.main-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Footer{
+  margin-top: auto;
+}
+

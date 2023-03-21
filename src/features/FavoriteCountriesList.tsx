@@ -44,7 +44,7 @@ const tableContainerSx: SxProps = {
   marginRight: "auto",
   marginTop: 2,
   borderRadius: 2,
-  maxHeight: 1000
+  maxHeight: 'calc(100vh - 60px - 40px)'
 }
 
 const favoriteCountriesTable = (

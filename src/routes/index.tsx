@@ -14,7 +14,7 @@ import CountryDitails from '../features/CountryDitails'
 
 const Index = () => {
   return (
-    <div >
+    <div className='main-app' >
       <BrowserRouter>
         <header>
           <Navbar/>
@@ -29,7 +29,9 @@ const Index = () => {
             <Route path='*' element={<Error/>}/>
           </Routes>
         </main>
+        <footer>
           <Footer/>
+        </footer>
       </BrowserRouter>
     </div>
   )

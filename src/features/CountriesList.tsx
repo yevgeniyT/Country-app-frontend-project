@@ -59,7 +59,7 @@ const tableContainerSx: SxProps = {
     marginRight: "auto",
     marginTop: 2,
     borderRadius: 2,
-    maxHeight: 1000
+    maxHeight: 'calc(100vh - 110px - 40px)'
 }
 const StyledLink = styled(Link)({
     textDecoration: 'none',
@@ -89,8 +89,8 @@ return (
                             <TableCell align='center' width='200' classes={{ head: 'head' }}>Region</TableCell>
                             <TableCell align='center' width='200' classes={{ head: 'head' }}>Population</TableCell>
                             <TableCell align='center' width='200' classes={{ head: 'head' }}>Languages</TableCell>
-                            <TableCell align='center' width='100' classes={{ head: 'head' }}> </TableCell>
-                            <TableCell align='center' width='100' classes={{ head: 'head' }}></TableCell>
+                            <TableCell align='center' width='100' classes={{ head: 'head' }}>Add to list</TableCell>
+                            <TableCell align='center' width='100' classes={{ head: 'head' }}>Ditails</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
