@@ -8,7 +8,7 @@ import Navbar from '../layouts/Navbar'
 import Favorite from '../pages/Favorite'
 import Home from '../pages/Home'
 import Map from '../pages/Map'
-import Error from '../pages/Error'
+import Error from '../pages/ErrorFetch'
 import CountriesList from '../features/CountriesList'
 import CountryDitails from '../features/CountryDitails'
 

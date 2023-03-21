@@ -6,6 +6,7 @@ import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { deleteCountry } from '../reducers/counturies/favoriteCountriesSlice';
+import EmptyFavoriteList from '../pages/EmptyFavoriteList';
 
 // MUI imports
 import {
@@ -19,9 +20,11 @@ import {
   Paper,
   Box,
   SxProps,
+  Typography
 } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CountriesList from './CountriesList';
 
 
 const FavoriteCountriesList = () => {
@@ -44,8 +47,12 @@ const tableContainerSx: SxProps = {
   maxHeight: 1000
 }
 
-  return (
-    <Box>
+const favoriteCountriesTable = (
+  <Box textAlign='center'>
+      <Typography variant="h4" mt={2}>
+          {`You have ${favoriteList.length} ${favoriteList.length ===1 ? 'country' : 'countries '}in your list`}
+      </Typography>
+
       <TableContainer
         component={Paper}
         sx={tableContainerSx}
@@ -116,6 +123,12 @@ const tableContainerSx: SxProps = {
           </TableBody>
         </Table>
       </TableContainer>
+  </Box>
+)
+
+  return (
+    <Box>
+      {favoriteList.length === 0? <EmptyFavoriteList/> : favoriteCountriesTable}
     </Box>
   );
 };

@@ -6,12 +6,16 @@ import { useAppSelector } from './app/hooks';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './app/store';
+import "@fontsource/nunito-sans"; 
 
 
 function App() {
   const lightTheme = createTheme({
     palette: {
       mode: "light",
+    },
+    typography: {
+      fontFamily: 'Nunito Sans, sans-serif'
     },
     components: {
       MuiAppBar: {
@@ -33,6 +37,9 @@ function App() {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
+    },
+    typography: {
+      fontFamily: 'Nunito Sans, sans-serif'
     },
     components: {
       MuiAppBar: {

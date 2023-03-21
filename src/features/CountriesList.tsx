@@ -5,6 +5,8 @@ import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import {addCountryToList} from '../reducers/counturies/favoriteCountriesSlice'
 import {Country} from '../types/types'
+import Loading from '../pages/loading';
+import ErrorFetch from '../pages/ErrorFetch';
 
 //*Message imports
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,8 +29,10 @@ import { styled } from '@mui/system';
 const CountriesList: React.FC = () => {
     const dispatch = useAppDispatch()    
     const countryData = useAppSelector ((state)=>state.countryR.countries)
+    const isLoading = useAppSelector((state)=>state.countryR.loading)
+    const isError = useAppSelector((state)=>state.countryR.error)
     
-const handleAddToFavorite = (country: Country) =>{
+    const handleAddToFavorite = (country: Country) =>{
     if (isCountryFavorite(country)){
         toast.error(`${country.name.official} is already in your favoriets`)
     } else {
@@ -36,12 +40,13 @@ const handleAddToFavorite = (country: Country) =>{
         toast.success(`${country.name.official} has been added to your favoriets`)
     }}
     
-//* change colore of favorite icon based on condition if the county in favorite list
-    //*get the store in this component
+
+// change colore of favorite icon based on condition if the county in favorite list
+    //get the store in this component
 
 const favoriteCountries = useAppSelector((state)=>state.favoriteCountriesListR.favoriteCountriesList)
 
-    //* add fanction to check is the county in list
+    // add fanction to check is the county in list
 
 const isCountryFavorite = (country:Country) =>{
     return favoriteCountries.some(favoriteCountry=>favoriteCountry.name.official===country.name.official)
@@ -64,6 +69,13 @@ const StyledLink = styled(Link)({
     color: 'primary.main',
     },
 });
+if(isLoading) {
+    return <Loading/>
+}
+if(isError) {
+    return <ErrorFetch/>
+}
+
 return (
     <Box>
         <ToastContainer />
