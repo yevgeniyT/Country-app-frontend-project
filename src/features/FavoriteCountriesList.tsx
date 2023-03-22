@@ -117,7 +117,7 @@ const favoriteCountriesTable = (
 
                   <TableCell align='center'>
                     <IconButton onClick={()=>handleDelete(country.id)}>
-                      <DeleteIcon  sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.5rem', lg: '2rem', xl: '3rem'}}}  />
+                      <DeleteIcon  sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.5rem', lg: '2rem', xl: '2rem'}}}  />
                     </IconButton>
                   </TableCell>
 
@@ -126,7 +126,7 @@ const favoriteCountriesTable = (
                       <StyledLink
                         to="/country_ditails"
                       >
-                          <InfoIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.5rem', lg: '2rem', xl: '3rem'}}} onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                          <InfoIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.5rem', lg: '2rem', xl: '2rem'}}} onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
                       </StyledLink>
                     </IconButton >
                   </TableCell>

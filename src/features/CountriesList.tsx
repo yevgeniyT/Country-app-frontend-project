@@ -143,7 +143,7 @@ return (
                                 align='center'
                                 sx={{ padding: { xs: '2px', sm: '4px' },fontSize: {xs:'0.8rem', sm: '0.8rem', md:'1rem', lg: '1.2rem', xl: '1.4rem'} }}
                             >
-                                {country.population}
+                                {country.population.toLocaleString()}
                             </TableCell>
 
                             <TableCell
@@ -166,7 +166,7 @@ return (
                                 sx={{ padding: { xs: '2px', sm: '4px' }}}
                             >
                                 <IconButton onClick={()=> handleAddToFavorite (country)}>
-                                    <FavoriteIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '3rem'}}}  color={isCountryFavorite(country)? 'error': 'action'}/>
+                                    <FavoriteIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '2rem'}}}  color={isCountryFavorite(country)? 'error': 'action'}/>
                                 </IconButton>
                             </TableCell>
 
@@ -178,7 +178,7 @@ return (
                                 <StyledLink
                                     to="/country_ditails"
                                 >
-                                    <InfoIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '3rem'}}} onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
+                                    <InfoIcon sx={{fontSize: {xs:'1rem', sm: '1.2rem', md:'1.4rem', lg: '1.6rem', xl: '2rem'}}} onClick={()=>dispatch(getCountryDitails(country.name.official))}/>
                                 </StyledLink>
                             </IconButton>
                             </TableCell>

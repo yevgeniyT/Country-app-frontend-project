@@ -178,9 +178,11 @@ const handleSerchQuery: InputChangeHandler = (event) => {
                 <HomeIcon/>
               </IconButton>
             </NavLink>
-              <IconButton>
+            <NavLink to='/map'>
+            <IconButton>
                 <PublicIcon/>
               </IconButton>
+            </NavLink>
             <NavLink to="/favorite">
               <IconButton>
                 <Badge badgeContent={favoriteCountriesCount} color="error">

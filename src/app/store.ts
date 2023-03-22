@@ -3,6 +3,7 @@ import countryReducer from '../reducers/counturies/countriesSlice'
 import countryDitails from '../reducers/counturies/countryDitailsSlice'
 import favoriteCountries from '../reducers/counturies/favoriteCountriesSlice'
 import themeSelector from '../reducers/counturies/themeSlice'
+import geoData from '../reducers/counturies/geoDataSlice' //!
 
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   countryR:countryReducer,
   countryDitailsR: countryDitails,
   favoriteCountriesListR: favoriteCountries,
-  themeSelectorR: themeSelector
+  themeSelectorR: themeSelector,
+  geoDataR: geoData //!
 })
 
 const persistConfig = {
@@ -27,7 +29,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE', 'persist/REGISTER'],
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE', 'persist/REGISTER' ],
       },
     }),
 });
@@ -35,9 +37,3 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
-// export type AppThunk<ReturnType = void> = ThunkAction<
-//   ReturnType,
-//   RootState,
-//   unknown,
-//   Action<string>
-// >

@@ -7,7 +7,7 @@ import Navbar from '../layouts/Navbar'
 
 import Favorite from '../pages/Favorite'
 import Home from '../pages/Home'
-import Map from '../pages/Map'
+import WorldMap from '../pages/WorldMap'
 import Error from '../pages/ErrorFetch'
 import CountriesList from '../features/CountriesList'
 import CountryDitails from '../features/CountryDitails'
@@ -23,7 +23,7 @@ const Index = () => {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/favorite' element={<Favorite/>}/>
-            <Route path='/map' element={<Map/>}/>
+            <Route path='/map' element={<WorldMap/>}/>
             <Route path='/countries_list' element={<CountriesList/>}/>
             <Route path='/country_ditails' element={<CountryDitails/>}/>
             <Route path='*' element={<Error/>}/>
