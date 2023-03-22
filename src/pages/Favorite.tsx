@@ -1,11 +1,11 @@
-import React from 'react'
-import FavoriteCountriesList from '../features/FavoriteCountriesList'
+import React from 'react';
+import FavoriteCountriesList from '../features/FavoriteCountriesList';
 
 const Favorite = () => {
   return (
     <div>
-      <FavoriteCountriesList/>
+      <FavoriteCountriesList />
     </div>
-  )
-}
-export default Favorite
+  );
+};
+export default Favorite;

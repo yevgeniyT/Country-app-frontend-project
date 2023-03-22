@@ -5,7 +5,7 @@
   list-style-type: none;
   text-decoration: none;
   outline: none;
-  font-family: "Teko", sans-serif;
+  font-family: 'Teko', sans-serif;
 }
 
 html,
@@ -14,14 +14,14 @@ body {
 }
 
 main {
-  flex:1;
+  flex: 1;
 }
 
 .centered {
   display: flex;
   justify-content: center;
   align-items: center;
-  }
+}
 
 .app {
   width: 90%;
@@ -33,7 +33,7 @@ main {
 img {
   width: 100%;
   height: auto;
-  object-fit: 'contain'
+  object-fit: 'contain';
 }
 
 /* Favorite countrie page */
@@ -47,7 +47,7 @@ img {
   flex-direction: column;
 }
 
-.Footer{
+.Footer {
   margin-top: auto;
 }
 

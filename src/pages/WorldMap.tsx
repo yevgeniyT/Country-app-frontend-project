@@ -5,56 +5,56 @@ import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import '../App.css';
 import 'leaflet/dist/leaflet.css';
 import { useAppSelector } from '../app/hooks';
-import countries from '../data/countries.json'
+import countries from '../data/countries.json';
 
 const center = [20, 100];
 const WorldMap = () => {
+  const countriesData = useAppSelector(state => state.countryR.countries);
 
-const countriesData = useAppSelector ((state)=>state.countryR.countries)
+  const countryStyle = {
+    color: 'grey',
+    weight: 1,
+    dashArray: 5,
+  };
+  const highlightStyle = {
+    color: 'blue',
+    weight: 2,
+    dashArray: '',
+  };
 
-const countryStyle ={
-  color: 'grey',
-  weight: 1,
-  dashArray: 5
-}
-const highlightStyle = {
-  color: 'blue',
-  weight: 2,
-  dashArray: '',
-};
-
-const onEachCountry = (country, layer) => {
-
-  
-  const countryCode = country.properties.ISO_A3;
-  const countryInfo = countriesData.find((c) => c.cca3 === countryCode);
-  if (countryInfo) {
-    const popupContent = `
+  const onEachCountry = (country, layer) => {
+    const countryCode = country.properties.ISO_A3;
+    const countryInfo = countriesData.find(c => c.cca3 === countryCode);
+    if (countryInfo) {
+      const popupContent = `
       <h3>${countryInfo.name.common} (${countryInfo.capital[0]})</h3>
       <img src="${countryInfo.flags.png}" alt="${countryInfo.name.common} flag">
       <p>Region: ${countryInfo.region}</p>
       <p>Population: ${countryInfo.population.toLocaleString()}</p>
       <p>Langusges: ${Object.values(countryInfo.languages).join(', ')} </p>
       `;
-    layer.bindPopup(popupContent);
-  } else {
-    layer.bindPopup('No information available');
-  }
+      layer.bindPopup(popupContent);
+    } else {
+      layer.bindPopup('No information available');
+    }
 
-  const onClick = (event) => {
-    event.target.openPopup();
+    const onClick = event => {
+      event.target.openPopup();
+    };
+
+    const mouseover = event => {
+      event.target.setStyle(highlightStyle);
+    };
+
+    const mouseout = event => {
+      event.target.setStyle(countryStyle);
+    };
+
+    layer
+      .on('click', onClick)
+      .on('mouseover', mouseover)
+      .on('mouseout', mouseout);
   };
-
-  const mouseover = (event) => {
-    event.target.setStyle(highlightStyle);
-  };
-
-  const mouseout = (event) => {
-    event.target.setStyle(countryStyle);
-  };
-
-  layer.on('click', onClick).on('mouseover', mouseover).on('mouseout', mouseout);
-};
   return (
     <div className="map-container">
       <MapContainer
@@ -62,12 +62,18 @@ const onEachCountry = (country, layer) => {
         zoom={3}
         style={{ width: '100vw', height: '100vh' }}
       >
-        {countries && <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>}
+        {countries && (
+          <GeoJSON
+            style={countryStyle}
+            data={countries.features}
+            onEachFeature={onEachCountry}
+          />
+        )}
         <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=ByX2FrOZQJ9mKw8J0YV7"
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         />
-     </MapContainer>
+      </MapContainer>
     </div>
   );
 };

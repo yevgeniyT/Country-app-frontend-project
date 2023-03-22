@@ -1,57 +1,57 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+import { getCountries } from '../../services/api';
 
-import { getCountries } from "../../services/api"
-
-import { CountriesState } from "../../types/types"
+import { CountriesState } from '../../types/types';
 
 const INITIAL_STATE: CountriesState = {
-  countries : [],
+  countries: [],
   loading: false,
   error: false,
   message: '',
-  originalCountrie: []
-}
+  originalCountrie: [],
+};
 
-export const countriesSlice = createSlice ({
+export const countriesSlice = createSlice({
   name: 'countries',
   initialState: INITIAL_STATE,
   reducers: {
     search: (state, action) => {
-      let searchQuery = action.payload
-      if(searchQuery === ''){
-        state.countries=state.originalCountrie
+      let searchQuery = action.payload;
+      if (searchQuery === '') {
+        state.countries = state.originalCountrie;
       } else {
-      state.countries= state.originalCountrie.filter((country) => 
-        country.name.official.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
-      )}
+        state.countries = state.originalCountrie.filter(country =>
+          country.name.official
+            .toLocaleLowerCase()
+            .includes(searchQuery.toLocaleLowerCase())
+        );
+      }
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(getCountries.pending, (state)=>{
+      .addCase(getCountries.pending, state => {
         state.loading = true;
-        state.message = 'Data is pending....'}
-      )
-      .addCase(getCountries.fulfilled, (state, action) =>{
-        state.countries=action.payload.map((country) => ({
+        state.message = 'Data is pending....';
+      })
+      .addCase(getCountries.fulfilled, (state, action) => {
+        state.countries = action.payload.map(country => ({
           ...country,
-          id: uuidv4 ()
-        })
-        )
+          id: uuidv4(),
+        }));
         state.originalCountrie = action.payload;
-        state.loading = false}
-      )
-      .addCase(getCountries.rejected, (state)=>{
+        state.loading = false;
+      })
+      .addCase(getCountries.rejected, state => {
         state.loading = false;
         state.error = true;
-        state.message = 'Date fetching failed'
-        state.countries = []
-      })
-  }
-}
-)
+        state.message = 'Date fetching failed';
+        state.countries = [];
+      });
+  },
+});
 
-export default countriesSlice.reducer
-export const {search}=countriesSlice.actions
+export default countriesSlice.reducer;
+export const { search } = countriesSlice.actions;

@@ -1,10 +1,10 @@
-import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material'
-import React, {useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
-import {toggleDarkMode} from '../reducers/counturies/themeSlice'
-import { search} from '../reducers/counturies/countriesSlice';
+import { toggleDarkMode } from '../reducers/counturies/themeSlice';
+import { search } from '../reducers/counturies/countriesSlice';
 import { InputChangeHandler } from '../types/types';
 
 import Typography from '@mui/material/Typography';
@@ -20,32 +20,31 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-
 const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const favoriteCountriesCount = useAppSelector(
-    (state) => state.favoriteCountriesListR.favoriteCountriesList.length
+    state => state.favoriteCountriesListR.favoriteCountriesList.length
   );
-  const darkMode = useAppSelector((state) => state.themeSelectorR.darkMode);
+  const darkMode = useAppSelector(state => state.themeSelectorR.darkMode);
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-  useState <null | HTMLElement>(null);
+    useState<null | HTMLElement>(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-  setMobileMoreAnchorEl(event.currentTarget);
-  }
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleSwitchMode =()=>{
-    dispatch(toggleDarkMode())
-  }
+  const handleSwitchMode = () => {
+    dispatch(toggleDarkMode());
+  };
 
   const renderMobileMenu = (
-  <Menu
+    <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -63,14 +62,14 @@ const Navbar = () => {
       <MenuItem>
         <NavLink to="/">
           <IconButton>
-            <HomeIcon/>
+            <HomeIcon />
           </IconButton>
         </NavLink>
       </MenuItem>
 
       <MenuItem>
         <IconButton>
-          <PublicIcon/>
+          <PublicIcon />
         </IconButton>
       </MenuItem>
 
@@ -78,10 +77,10 @@ const Navbar = () => {
         <NavLink to="/favorite">
           <IconButton>
             <Badge badgeContent={favoriteCountriesCount} color="error">
-              <FavoriteIcon/>
+              <FavoriteIcon />
             </Badge>
           </IconButton>
-        </NavLink>  
+        </NavLink>
       </MenuItem>
 
       <MenuItem>
@@ -89,65 +88,63 @@ const Navbar = () => {
           <IconButton onClick={handleSwitchMode}>
             <LightModeIcon />
           </IconButton>
-            ) : (
+        ) : (
           <IconButton onClick={handleSwitchMode}>
             <DarkModeIcon />
           </IconButton>
-          )
-        }
+        )}
       </MenuItem>
-  </Menu>
-  )
+    </Menu>
+  );
 
-//* Serch feature elements
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+  //* Serch feature elements
+  const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-  },
-}));
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  }));
 
-const handleSerchQuery: InputChangeHandler = (event) => {
-  dispatch(search(event.target.value))
-}
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: '20ch',
+      },
+    },
+  }));
+
+  const handleSerchQuery: InputChangeHandler = event => {
+    dispatch(search(event.target.value));
+  };
 
   return (
-    <Box sx={{flexGrow:1}}>
-      <AppBar position='sticky'>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="sticky">
         <Toolbar>
-
           <Typography
             variant="h6"
             noWrap
@@ -168,40 +165,42 @@ const handleSerchQuery: InputChangeHandler = (event) => {
             />
           </Search>
 
-          <Box sx={{flexGrow:1}}>
-            <Box sx={{ display: { xs: 'none', md: 'flex' },
-                    justifyContent: 'flex-end',
-                    flexDirection: 'row',
-                    gap: 1.5}}>
-            <NavLink to="/">
-              <IconButton>
-                <HomeIcon/>
-              </IconButton>
-            </NavLink>
-            <NavLink to='/map'>
-            <IconButton>
-                <PublicIcon/>
-              </IconButton>
-            </NavLink>
-            <NavLink to="/favorite">
-              <IconButton>
-                <Badge badgeContent={favoriteCountriesCount} color="error">
-                  <FavoriteIcon/>
-                </Badge>
-              </IconButton>
-            </NavLink>  
+          <Box sx={{ flexGrow: 1 }}>
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'flex-end',
+                flexDirection: 'row',
+                gap: 1.5,
+              }}
+            >
+              <NavLink to="/">
+                <IconButton>
+                  <HomeIcon />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/map">
+                <IconButton>
+                  <PublicIcon />
+                </IconButton>
+              </NavLink>
+              <NavLink to="/favorite">
+                <IconButton>
+                  <Badge badgeContent={favoriteCountriesCount} color="error">
+                    <FavoriteIcon />
+                  </Badge>
+                </IconButton>
+              </NavLink>
 
-            {darkMode ? (
-              <IconButton onClick={handleSwitchMode}>
-                <LightModeIcon />
-              </IconButton>
+              {darkMode ? (
+                <IconButton onClick={handleSwitchMode}>
+                  <LightModeIcon />
+                </IconButton>
               ) : (
-              <IconButton onClick={handleSwitchMode}>
-                <DarkModeIcon />
-              </IconButton>
-              )
-            }
-
+                <IconButton onClick={handleSwitchMode}>
+                  <DarkModeIcon />
+                </IconButton>
+              )}
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -220,7 +219,7 @@ const handleSerchQuery: InputChangeHandler = (event) => {
       </AppBar>
       {renderMobileMenu}
     </Box>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

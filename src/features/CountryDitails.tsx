@@ -1,13 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { useAppSelector } from '../app/hooks';
 import { v4 as uuidv4 } from 'uuid';
 
 //*MUI imports
-import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography, IconButtonProps, Paper } from '@mui/material';
+import {
+  Avatar,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Collapse,
+  IconButton,
+  Typography,
+  IconButtonProps,
+  Paper,
+} from '@mui/material';
 import { Box } from '@mui/system';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/system';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
@@ -26,76 +38,93 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
+      duration: theme.transitions.duration.shortest,
     }),
   };
 });
 
 const CountryDitails: React.FC = () => {
-  const countryDitailsData = useAppSelector(state => state.countryDitailsR.countryDitails);
+  const countryDitailsData = useAppSelector(
+    state => state.countryDitailsR.countryDitails
+  );
 
   const [expanded, setExpanded] = useState(false);
-  
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  
+
   return (
     <Box>
-      {countryDitailsData.map(country => {        
+      {countryDitailsData.map(country => {
         return (
-        <Paper
-        key={uuidv4()}
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }} >
-          <Card key={uuidv4()}
-                sx={{ maxWidth: '50%' }}>
+          <Paper
+            key={uuidv4()}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Card key={uuidv4()} sx={{ maxWidth: '50%' }}>
               <CardHeader
-                avatar = {
+                avatar={
                   <Avatar
-                  src={country.flags.png}
-                  alt={country.flags.alt}
-                  >
-                  </Avatar>
+                    src={country.flags.png}
+                    alt={country.flags.alt}
+                  ></Avatar>
                 }
-                title = {`${country.name.official} (${country.capital[0]}) `} 
-                subheader={`TimeZone: ${country.timezones[0]} | Language: ${country.languages[Object.keys(country.languages)[0]]} | Currency: ${country.currencies[Object.keys(country.currencies)[0]].name}`}
+                title={`${country.name.official} (${country.capital[0]}) `}
+                subheader={`TimeZone: ${country.timezones[0]} | Language: ${
+                  country.languages[Object.keys(country.languages)[0]]
+                } | Currency: ${
+                  country.currencies[Object.keys(country.currencies)[0]].name
+                }`}
               />
               <CardMedia
-                  component="img"
-                  height="250"
-                  image={country.flags.png}
-                  alt={country.flags.alt}
+                component="img"
+                height="250"
+                image={country.flags.png}
+                alt={country.flags.alt}
               />
               <CardContent>
-                <Typography>{country.name.common}, officially known as {country.name.official}, is a sovereign nation situated in the {country.subregion} subregion of {country.region}. The predominant language spoken in {country.name.common} is {country.languages[Object.keys(country.languages)[0]]}, and the national currency is the {country.currencies[Object.keys(country.currencies)[0]].name}. The country's capital is {country.capital[0]}. With a population of {country.population}, {country.name.common} shares its borders with {country.borders.join(', ')}. The rich culture and heritage of {country.name.common} can be experienced throughout the nation, making it an enchanting destination for travelers and global citizens alike.
+                <Typography>
+                  {country.name.common}, officially known as{' '}
+                  {country.name.official}, is a sovereign nation situated in the{' '}
+                  {country.subregion} subregion of {country.region}. The
+                  predominant language spoken in {country.name.common} is{' '}
+                  {country.languages[Object.keys(country.languages)[0]]}, and
+                  the national currency is the{' '}
+                  {country.currencies[Object.keys(country.currencies)[0]].name}.
+                  The country's capital is {country.capital[0]}. With a
+                  population of {country.population}, {country.name.common}{' '}
+                  shares its borders with {country.borders.join(', ')}. The rich
+                  culture and heritage of {country.name.common} can be
+                  experienced throughout the nation, making it an enchanting
+                  destination for travelers and global citizens alike.
                 </Typography>
               </CardContent>
               <CardActions>
-              <Link to="/">
-                <IconButton>
-                  <ArrowBackIcon />
-                </IconButton>
-              </Link>
-                <Box ml='auto'>
-                { <a
-                  href={country.maps.openStreetMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/">
                   <IconButton>
-                    <LocationOnIcon />
+                    <ArrowBackIcon />
                   </IconButton>
-                </a>}
-                  
-                  <ExpandMore
-                    expand ={expanded}  
-                    onClick={handleExpandClick}
-                  >
-                    <ExpandMoreIcon/>
+                </Link>
+                <Box ml="auto">
+                  {
+                    <a
+                      href={country.maps.openStreetMaps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconButton>
+                        <LocationOnIcon />
+                      </IconButton>
+                    </a>
+                  }
+
+                  <ExpandMore expand={expanded} onClick={handleExpandClick}>
+                    <ExpandMoreIcon />
                   </ExpandMore>
                 </Box>
               </CardActions>
@@ -103,15 +132,42 @@ const CountryDitails: React.FC = () => {
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>
-                    {country.name.common}, officially known as the {country.name.official}  is a captivating country situated in {country.subregion}. The nation boasts a rich history, stunning architecture, and picturesque landscapes. With a diverse population of around {country.population.toLocaleString()} people, {country.name.common} embraces a vibrant mix of cultures and traditions.
-                  </Typography>    
-
-                  <Typography paragraph>
-                    The official language of the country is {country.languages[Object.keys(country.languages)[0]]}, which is spoken by the majority of its inhabitants. {country.name.common}'s currency is the {country.currencies[Object.keys(country.currencies)[0]].name}, symbolized by "{country.currencies[Object.keys(country.currencies)[0]].symbol}", which plays a vital role in the nation's thriving economy. The capital city of {country.name.common} is {country.capital[0]}.
+                    {country.name.common}, officially known as the{' '}
+                    {country.name.official} is a captivating country situated in{' '}
+                    {country.subregion}. The nation boasts a rich history,
+                    stunning architecture, and picturesque landscapes. With a
+                    diverse population of around{' '}
+                    {country.population.toLocaleString()} people,{' '}
+                    {country.name.common} embraces a vibrant mix of cultures and
+                    traditions.
                   </Typography>
 
                   <Typography paragraph>
-                    {country.name.common} is not landlocked and shares its borders with several countries, including {country.borders.join(', ')}. Its location at the heart of Europe has significantly influenced its history and culture, with the nation often serving as a bridge between Eastern and Western Europe.
+                    The official language of the country is{' '}
+                    {country.languages[Object.keys(country.languages)[0]]},
+                    which is spoken by the majority of its inhabitants.{' '}
+                    {country.name.common}'s currency is the{' '}
+                    {
+                      country.currencies[Object.keys(country.currencies)[0]]
+                        .name
+                    }
+                    , symbolized by "
+                    {
+                      country.currencies[Object.keys(country.currencies)[0]]
+                        .symbol
+                    }
+                    ", which plays a vital role in the nation's thriving
+                    economy. The capital city of {country.name.common} is{' '}
+                    {country.capital[0]}.
+                  </Typography>
+
+                  <Typography paragraph>
+                    {country.name.common} is not landlocked and shares its
+                    borders with several countries, including{' '}
+                    {country.borders.join(', ')}. Its location at the heart of
+                    Europe has significantly influenced its history and culture,
+                    with the nation often serving as a bridge between Eastern
+                    and Western Europe.
                   </Typography>
 
                   <Typography paragraph>
@@ -127,13 +183,12 @@ const CountryDitails: React.FC = () => {
                   </Typography>
                 </CardContent>
               </Collapse>
-          </Card>
-         </Paper>
-        )
+            </Card>
+          </Paper>
+        );
       })}
     </Box>
-  )
-}
+  );
+};
 
-export default CountryDitails
-
+export default CountryDitails;

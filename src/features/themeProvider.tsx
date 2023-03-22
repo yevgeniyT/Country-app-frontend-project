@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const themeProvider = () => {
-  return (
-    <div>themeProvider</div>
-  )
-}
+  return <div>themeProvider</div>;
+};
 
-export default themeProvider
+export default themeProvider;
