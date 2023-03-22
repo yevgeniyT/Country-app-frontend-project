@@ -3,7 +3,6 @@ import countryReducer from '../reducers/counturies/countriesSlice'
 import countryDitails from '../reducers/counturies/countryDitailsSlice'
 import favoriteCountries from '../reducers/counturies/favoriteCountriesSlice'
 import themeSelector from '../reducers/counturies/themeSlice'
-import geoData from '../reducers/counturies/geoDataSlice' //!
 
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
@@ -13,7 +12,7 @@ const rootReducer = combineReducers({
   countryDitailsR: countryDitails,
   favoriteCountriesListR: favoriteCountries,
   themeSelectorR: themeSelector,
-  geoDataR: geoData //!
+
 })
 
 const persistConfig = {

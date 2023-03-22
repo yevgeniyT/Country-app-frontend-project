@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import countries from '../data/countries.geojson';
-
 import { CountriesResponse } from "../types/types";
 const BASE_URL ="https://restcountries.com/v3.1"
 
@@ -41,18 +39,3 @@ export const getCountryDitails = createAsyncThunk <CountriesResponse, string> (
         }
     }
 )
-
-//! Get GeoData
-
-export const getGeoData = createAsyncThunk(
-    'countries/getGeoData',
-    async () => {
-    try {
-        const response = await fetch(countries);
-        const data = await response.json();        
-        return data;
-    } catch (error) {
-        throw new Error('Failed to fetch data');
-    }
-    },
-);

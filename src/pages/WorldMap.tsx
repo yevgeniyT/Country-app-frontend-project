@@ -1,24 +1,16 @@
 // @ts-nocheck
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import '../App.css';
 import 'leaflet/dist/leaflet.css';
 import { useAppSelector } from '../app/hooks';
-import { useAppDispatch} from '../app/hooks';
-import { getGeoData } from '../services/api';
+import countries from '../data/countries.json'
 
 const center = [20, 100];
-
 const WorldMap = () => {
 
-const dispatch = useAppDispatch()    
-const geoData = useAppSelector ((state)=>state.geoDataR.geoData)
 const countriesData = useAppSelector ((state)=>state.countryR.countries)
-  
-useEffect(() => {
-    dispatch(getGeoData());
-  }, [dispatch]);
 
 const countryStyle ={
   color: 'grey',
@@ -32,6 +24,8 @@ const highlightStyle = {
 };
 
 const onEachCountry = (country, layer) => {
+
+  
   const countryCode = country.properties.ISO_A3;
   const countryInfo = countriesData.find((c) => c.cca3 === countryCode);
   if (countryInfo) {
@@ -68,7 +62,7 @@ const onEachCountry = (country, layer) => {
         zoom={3}
         style={{ width: '100vw', height: '100vh' }}
       >
-        {geoData && <GeoJSON style={countryStyle} data={geoData.features} onEachFeature={onEachCountry}/>}
+        {countries && <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>}
         <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=ByX2FrOZQJ9mKw8J0YV7"
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
