@@ -137,7 +137,6 @@ const CountriesTable = ({ data, handleAddToFavorite, isCountryFavorite }) => {
       ),
     },
   ];
-  console.log('Data received in CountriesTable:', data);
 
   const rows = data.map(country => {
     return {
