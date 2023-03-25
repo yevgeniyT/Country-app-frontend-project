@@ -1,15 +1,14 @@
-//@ts-nocheck
 import React from 'react';
 
 import CountriesTable from '../features/CountriesTable';
 import { useAppSelector } from '../app/hooks';
 import { Typography } from '@mui/material';
 
-const Favorite = () => {
+const Favorite: React.FC = () => {
   const favoriteList = useAppSelector(
     state => state.favoriteCountriesListR.favoriteCountriesList
   );
-  const isCountryFavorite = countryId => {
+  const isCountryFavorite = (countryId: string) => {
     return favoriteList.some(country => country.id === countryId);
   };
   return (

@@ -58,6 +58,9 @@ export type Country = {
     openStreetMaps: string;
   };
   cca3: string;
+  flag: string;
+  flagAlt: string;
+  nameOfficial: string;
 };
 
 export type CountriesResponse = Country[];
@@ -90,3 +93,21 @@ export type CountryDitailsState = {
 export type ThemeState = {
   darkMode: boolean;
 };
+
+//! CountriesTable types starts here
+
+export interface CountriesTableProps {
+  data: Country[];
+  handleAddToFavorite?: (country: Country) => void;
+  isCountryFavorite: (id: string) => boolean;
+}
+
+export interface CountryRow {
+  id: string;
+  flag: string | string;
+  flagAlt: string | string;
+  nameOfficial: string | string;
+  region: string;
+  population: number;
+  languages: string[];
+}

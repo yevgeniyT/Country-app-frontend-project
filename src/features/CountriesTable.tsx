@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react';
 
 import { getCountryDitails } from '../services/api';
@@ -14,11 +13,18 @@ import InfoIcon from '@mui/icons-material/Info';
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-//*Message imports
+//Message imports
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CountriesTable = ({ data, handleAddToFavorite, isCountryFavorite }) => {
+//Types imports
+import { Country, CountriesTableProps, CountryRow } from '../types/types';
+
+const CountriesTable: React.FC<CountriesTableProps> = ({
+  data,
+  handleAddToFavorite,
+  isCountryFavorite,
+}) => {
   const dispatch = useAppDispatch();
   const columns: GridColDef[] = [
     {
@@ -103,7 +109,7 @@ const CountriesTable = ({ data, handleAddToFavorite, isCountryFavorite }) => {
             dispatch(deleteCountry(params.row.id)); // Remove from favorites if it's already a favorite
             toast.error('Country removed from favorites.', { autoClose: 600 });
           } else {
-            handleAddToFavorite(params.row); // Add to favorites if it's not a favorite yet
+            (handleAddToFavorite || (() => {}))(params.row); // Add to favorites if it's not a favorite yet
             toast.success('Country added to favorites.', { autoClose: 600 });
           }
         };
@@ -138,7 +144,7 @@ const CountriesTable = ({ data, handleAddToFavorite, isCountryFavorite }) => {
     },
   ];
 
-  const rows = data.map(country => {
+  const rows: CountryRow[] = data.map((country: Country) => {
     return {
       id: country.cca3 || country.id,
       flag: country.flags ? country.flags.png : country.flag,

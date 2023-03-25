@@ -20,7 +20,6 @@ export const favoriteCountriesList = createSlice({
       );
     },
     clearFavoriteCountries: state => {
-      // Add this action
       state.favoriteCountriesList = [];
     },
   },
