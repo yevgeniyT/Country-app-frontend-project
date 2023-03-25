@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['favoriteCountriesListR', 'countryDitailsR'],
+  whitelist: ['favoriteCountriesListR', 'countryDitailsR', 'countryR'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

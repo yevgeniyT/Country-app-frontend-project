@@ -13,13 +13,19 @@ export const favoriteCountriesList = createSlice({
       state.favoriteCountriesList.push(action.payload);
     },
     deleteCountry: (state, action) => {
+      console.log(action.payload);
+
       state.favoriteCountriesList = state.favoriteCountriesList.filter(
         country => country.id !== action.payload
       );
     },
+    clearFavoriteCountries: state => {
+      // Add this action
+      state.favoriteCountriesList = [];
+    },
   },
 });
 
-export const { addCountryToList, deleteCountry } =
+export const { addCountryToList, deleteCountry, clearFavoriteCountries } =
   favoriteCountriesList.actions;
 export default favoriteCountriesList.reducer;

@@ -3,7 +3,10 @@ import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
-import { addCountryToList } from '../reducers/counturies/favoriteCountriesSlice';
+import {
+  addCountryToList,
+  deleteCountry,
+} from '../reducers/counturies/favoriteCountriesSlice';
 import { Country } from '../types/types';
 import Loading from '../pages/loading';
 import ErrorFetch from '../pages/ErrorFetch';
@@ -35,7 +38,10 @@ const CountriesList: React.FC = () => {
 
   const handleAddToFavorite = (country: Country) => {
     if (isCountryFavorite(country)) {
-      toast.error(`${country.name.official} is already in your favoriets`);
+      dispatch(deleteCountry(country.cca3));
+      toast.error(
+        `${country.name.official} has been deleted from your favoriets`
+      );
     } else {
       dispatch(addCountryToList(country));
       toast.success(

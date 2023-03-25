@@ -1,12 +1,28 @@
+//@ts-nocheck
 import React from 'react';
-import { useEffect } from 'react';
 
+import { useEffect } from 'react';
 import { getCountries } from '../services/api';
-import { useAppDispatch } from '../app/hooks';
-import CountriesList from '../features/CountriesList';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import CountriesTable from '../features/CountriesTable';
+import { addCountryToList } from '../reducers/counturies/favoriteCountriesSlice';
+
+import { Country } from '../types/types';
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const countriesList = useAppSelector(state => state.countryR.countries);
+  const favoriteCountries = useAppSelector(
+    state => state.favoriteCountriesListR.favoriteCountriesList
+  );
+
+  const isCountryFavorite = (id: string) => {
+    return favoriteCountries.some(favoriteCountry => favoriteCountry.id === id);
+  };
+
+  const handleAddToFavorite = (country: Country) => {
+    dispatch(addCountryToList(country));
+  };
 
   useEffect(() => {
     dispatch(getCountries());
@@ -14,7 +30,11 @@ const Home = () => {
 
   return (
     <div>
-      <CountriesList />
+      <CountriesTable
+        data={countriesList}
+        handleAddToFavorite={handleAddToFavorite}
+        isCountryFavorite={isCountryFavorite}
+      />
     </div>
   );
 };

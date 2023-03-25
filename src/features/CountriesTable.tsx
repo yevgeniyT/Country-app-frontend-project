@@ -1,26 +1,25 @@
 //@ts-nocheck
 import React from 'react';
 
-import { useAppSelector } from '../app/hooks';
-import { useAppDispatch } from '../app/hooks';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import { deleteCountry } from '../reducers/counturies/favoriteCountriesSlice';
 import EmptyFavoriteList from '../pages/EmptyFavoriteList';
+import { useAppDispatch } from '../app/hooks';
 
 // MUI imports
-import { IconButton, TableCell, Box, Typography } from '@mui/material';
+import { IconButton, Box } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import InfoIcon from '@mui/icons-material/Info';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/system';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const FavoriteCountriesList = () => {
+//*Message imports
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const CountriesTable = ({ data, handleAddToFavorite, isCountryFavorite }) => {
   const dispatch = useAppDispatch();
-  const favoriteList = useAppSelector(
-    state => state.favoriteCountriesListR.favoriteCountriesList
-  );
-
   const columns: GridColDef[] = [
     {
       field: 'flag',
@@ -40,7 +39,7 @@ const FavoriteCountriesList = () => {
       minWidth: 150,
       disableColumnMenu: true,
       renderCell: (params: GridRenderCellParams) => (
-        <TableCell
+        <Box
           style={{
             whiteSpace: 'normal',
             wordWrap: 'break-word',
@@ -48,7 +47,7 @@ const FavoriteCountriesList = () => {
           }}
         >
           {params.value}
-        </TableCell>
+        </Box>
       ),
     },
     {
@@ -74,7 +73,7 @@ const FavoriteCountriesList = () => {
       disableColumnMenu: true,
       renderCell: (params: GridRenderCellParams) => {
         return (
-          <TableCell
+          <Box
             style={{
               whiteSpace: 'normal',
               wordWrap: 'break-word',
@@ -82,25 +81,39 @@ const FavoriteCountriesList = () => {
             }}
           >
             {params.value && params.value.join(', ')}
-          </TableCell>
+          </Box>
         );
       },
     },
 
     {
-      field: 'delete',
-      headerName: 'Delete',
+      field: 'favorites',
+      headerName: 'Favorites',
       flex: 1,
       minWidth: 70,
       headerAlign: 'center',
       align: 'center',
       sortable: false,
       disableColumnMenu: true,
-      renderCell: (params: GridRenderCellParams) => (
-        <IconButton onClick={() => handleDelete(params.row.id)}>
-          <DeleteIcon />
-        </IconButton>
-      ),
+      renderCell: (params: GridRenderCellParams) => {
+        const isFavorite = isCountryFavorite(params.row.id);
+
+        const handleFavoriteClick = () => {
+          if (isFavorite) {
+            dispatch(deleteCountry(params.row.id)); // Remove from favorites if it's already a favorite
+            toast.error('Country removed from favorites.', { autoClose: 600 });
+          } else {
+            handleAddToFavorite(params.row); // Add to favorites if it's not a favorite yet
+            toast.success('Country added to favorites.', { autoClose: 600 });
+          }
+        };
+
+        return (
+          <IconButton onClick={handleFavoriteClick}>
+            <FavoriteIcon color={isFavorite ? 'error' : 'action'} />
+          </IconButton>
+        );
+      },
     },
     {
       field: 'details',
@@ -115,30 +128,30 @@ const FavoriteCountriesList = () => {
         <IconButton>
           <StyledLink to="/country_ditails">
             <InfoIcon
-              onClick={() => dispatch(getCountryDitails(country.name.official))}
+              onClick={() =>
+                dispatch(getCountryDitails(params.row.nameOfficial))
+              }
             />
           </StyledLink>
         </IconButton>
       ),
     },
   ];
+  console.log('Data received in CountriesTable:', data);
 
-  const rows = favoriteList.map(country => {
+  const rows = data.map(country => {
     return {
-      id: country.cca3,
-      flag: country.flags.png,
-      flagAlt: country.flags.alt,
-      nameOfficial: country.name.official,
+      id: country.cca3 || country.id,
+      flag: country.flags ? country.flags.png : country.flag,
+      flagAlt: country.flags ? country.flags.alt : country.flagAlt,
+      nameOfficial: country.name ? country.name.official : country.nameOfficial,
       region: country.region,
       population: country.population,
-      languages: Object.values(country.languages),
+      languages: country.languages
+        ? Object.values(country.languages)
+        : country.languages,
     };
   });
-  console.log(rows);
-
-  const handleDelete = (id: string) => {
-    dispatch(deleteCountry(id));
-  };
 
   const StyledLink = styled(Link)({
     textDecoration: 'none',
@@ -149,26 +162,8 @@ const FavoriteCountriesList = () => {
     },
   });
 
-  const favoriteCountriesTable = (
+  const CountriesTableContent = (
     <Box textAlign="center">
-      <Typography
-        variant="h4"
-        mt={2}
-        mb={2}
-        sx={{
-          fontSize: {
-            xs: '0.8rem',
-            sm: '1rem',
-            md: '1.2rem',
-            lg: '1.4rem',
-            xl: '1.6rem',
-          },
-        }}
-      >
-        {`You have ${favoriteList.length} ${
-          favoriteList.length === 1 ? 'country' : 'countries '
-        }in your list`}
-      </Typography>
       <Box
         sx={{
           width: '100%',
@@ -186,22 +181,16 @@ const FavoriteCountriesList = () => {
             border: 'none',
             maxWidth: '95%',
           }}
-          pageSize={5}
-          rowsPerPageOptions={[15, 25, 50]}
         />
       </Box>
     </Box>
   );
-
   return (
     <Box>
-      {favoriteList.length === 0 ? (
-        <EmptyFavoriteList />
-      ) : (
-        favoriteCountriesTable
-      )}
+      {data.length === 0 ? <EmptyFavoriteList /> : CountriesTableContent}
+      <ToastContainer hideProgressBar />
     </Box>
   );
 };
 
-export default FavoriteCountriesList;
+export default CountriesTable;
