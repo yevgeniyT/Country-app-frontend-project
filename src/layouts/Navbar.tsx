@@ -1,12 +1,13 @@
-import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
 import { toggleDarkMode } from '../reducers/counturies/themeSlice';
 import { search } from '../reducers/counturies/countriesSlice';
 import { InputChangeHandler } from '../types/types';
 
+import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -21,6 +22,9 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Navbar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const dispatch = useAppDispatch();
 
   const favoriteCountriesCount = useAppSelector(
@@ -154,16 +158,18 @@ const Navbar = () => {
             Country Explorer App
           </Typography>
 
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={handleSerchQuery}
-            />
-          </Search>
+          {currentPath !== '/' && currentPath !== '/country_ditails' && (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={handleSerchQuery}
+              />
+            </Search>
+          )}
 
           <Box sx={{ flexGrow: 1 }}>
             <Box
