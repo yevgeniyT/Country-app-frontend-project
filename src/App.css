@@ -52,10 +52,9 @@ img {
   margin-top: auto;
 }
 
-.map-container {
-  flex-grow: 1;
+/* .map-container {
   overflow: hidden;
-}
+} */
 
 /* Home page starts here */
 

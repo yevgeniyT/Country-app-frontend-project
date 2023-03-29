@@ -60,7 +60,7 @@ const WorldMap = () => {
       <MapContainer
         center={center}
         zoom={3}
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '100%', height: 'calc(100vh - 87px - 40px)' }}
       >
         {countries && (
           <GeoJSON

@@ -160,18 +160,20 @@ const Navbar = () => {
             Country Explorer App
           </Typography>
 
-          {currentPath !== '/' && currentPath !== '/country_ditails' && (
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSerchQuery}
-              />
-            </Search>
-          )}
+          {currentPath !== '/' &&
+            currentPath !== '/country_ditails' &&
+            currentPath !== '/map' && (
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleSerchQuery}
+                />
+              </Search>
+            )}
 
           <Box sx={{ flexGrow: 1 }}>
             <Box
