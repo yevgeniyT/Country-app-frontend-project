@@ -17,7 +17,7 @@ export const countriesSlice = createSlice({
   name: 'countries',
   initialState: INITIAL_STATE,
   reducers: {
-    search: (state, action) => {
+    searchCountries: (state, action) => {
       let searchQuery = action.payload;
       if (searchQuery === '') {
         state.countries = state.originalCountrie;
@@ -54,4 +54,4 @@ export const countriesSlice = createSlice({
 });
 
 export default countriesSlice.reducer;
-export const { search } = countriesSlice.actions;
+export const { searchCountries } = countriesSlice.actions;

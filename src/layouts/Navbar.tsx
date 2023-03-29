@@ -4,7 +4,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import { useAppDispatch } from '../app/hooks';
 import { toggleDarkMode } from '../reducers/counturies/themeSlice';
-import { search } from '../reducers/counturies/countriesSlice';
+import { searchCountries } from '../reducers/counturies/countriesSlice';
+import { serchFavoriteCountries } from '../reducers/counturies/favoriteCountriesSlice';
 import { InputChangeHandler } from '../types/types';
 
 import { AppBar, Badge, Box, IconButton, Toolbar } from '@mui/material';
@@ -142,7 +143,8 @@ const Navbar = () => {
   }));
 
   const handleSerchQuery: InputChangeHandler = event => {
-    dispatch(search(event.target.value));
+    dispatch(searchCountries(event.target.value));
+    dispatch(serchFavoriteCountries(event.target.value));
   };
 
   return (
