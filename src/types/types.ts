@@ -61,6 +61,13 @@ export type Country = {
   flag: string;
   flagAlt: string;
   nameOfficial: string;
+  coatOfArms: {
+    png: string;
+  };
+  latlng: {
+    0: number;
+    1: number;
+  };
 };
 
 export type CountriesResponse = Country[];

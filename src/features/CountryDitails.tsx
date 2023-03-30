@@ -65,13 +65,14 @@ const CountryDitails: React.FC = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              height: 'calc(100vh - 90px - 40px)',
             }}
           >
-            <Card key={uuidv4()} sx={{ maxWidth: '50%' }}>
+            <Card key={uuidv4()} sx={{ maxWidth: '40%' }}>
               <CardHeader
                 avatar={
                   <Avatar
-                    src={country.flags.png}
+                    src={country.coatOfArms.png}
                     alt={country.flags.alt}
                   ></Avatar>
                 }
@@ -87,22 +88,40 @@ const CountryDitails: React.FC = () => {
                 height="250"
                 image={country.flags.png}
                 alt={country.flags.alt}
+                sx={{
+                  padding: '3rem',
+                }}
               />
               <CardContent>
                 <Typography>
-                  {country.name.common}, officially known as{' '}
-                  {country.name.official}, is a sovereign nation situated in the{' '}
-                  {country.subregion} subregion of {country.region}. The
-                  predominant language spoken in {country.name.common} is{' '}
-                  {country.languages[Object.keys(country.languages)[0]]}, and
-                  the national currency is the{' '}
-                  {country.currencies[Object.keys(country.currencies)[0]].name}.
-                  The country's capital is {country.capital[0]}. With a
-                  population of {country.population}, {country.name.common}{' '}
-                  shares its borders with {country.borders.join(', ')}. The rich
-                  culture and heritage of {country.name.common} can be
-                  experienced throughout the nation, making it an enchanting
-                  destination for travelers and global citizens alike.
+                  <Box component="span" fontWeight="bold">
+                    {country.name.common}
+                  </Box>
+                  , officially known as {country.name.official}, is a sovereign
+                  nation situated in the{' '}
+                  <Box component="span" fontWeight="bold">
+                    {country.subregion}
+                  </Box>{' '}
+                  subregion of {country.region}. The predominant language spoken
+                  in {country.name.common} is{' '}
+                  <Box component="span" fontWeight="bold">
+                    {country.languages[Object.keys(country.languages)[0]]}
+                  </Box>
+                  , and the national currency is the{' '}
+                  <Box component="span" fontWeight="bold">
+                    {
+                      country.currencies[Object.keys(country.currencies)[0]]
+                        .name
+                    }
+                  </Box>
+                  . The country's capital is{' '}
+                  <Box component="span" fontWeight="bold">
+                    {country.capital[0]}
+                  </Box>
+                  . The rich culture and heritage of {country.name.common}
+                  can be experienced throughout the nation, making it an
+                  enchanting destination for travelers and global citizens
+                  alike.
                 </Typography>
               </CardContent>
               <CardActions>
@@ -133,54 +152,33 @@ const CountryDitails: React.FC = () => {
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>
-                    {country.name.common}, officially known as the{' '}
-                    {country.name.official} is a captivating country situated in{' '}
-                    {country.subregion}. The nation boasts a rich history,
-                    stunning architecture, and picturesque landscapes. With a
-                    diverse population of around{' '}
-                    {country.population.toLocaleString()} people,{' '}
-                    {country.name.common} embraces a vibrant mix of cultures and
-                    traditions.
+                    <Box component="span" fontWeight="bold">
+                      Location:{' '}
+                    </Box>
+                    {Math.abs(country.latlng[0])}°
+                    {country.latlng[0] >= 0 ? 'N' : 'S'} and{' '}
+                    {Math.abs(country.latlng[1])}°
+                    {country.latlng[1] >= 0 ? 'E' : 'W'}
                   </Typography>
-
-                  <Typography paragraph>
-                    The official language of the country is{' '}
-                    {country.languages[Object.keys(country.languages)[0]]},
-                    which is spoken by the majority of its inhabitants.{' '}
-                    {country.name.common}'s currency is the{' '}
-                    {
-                      country.currencies[Object.keys(country.currencies)[0]]
-                        .name
-                    }
-                    , symbolized by "
-                    {
-                      country.currencies[Object.keys(country.currencies)[0]]
-                        .symbol
-                    }
-                    ", which plays a vital role in the nation's thriving
-                    economy. The capital city of {country.name.common} is{' '}
-                    {country.capital[0]}.
+                  <Typography mb={2}>
+                    <Box component="span" fontWeight="bold">
+                      Has borders with:{' '}
+                    </Box>
+                    {country.borders.length > 0
+                      ? country.borders.join(', ')
+                      : 'No data'}
                   </Typography>
-
-                  <Typography paragraph>
-                    {country.name.common} is not landlocked and shares its
-                    borders with several countries, including{' '}
-                    {country.borders.join(', ')}. Its location at the heart of
-                    Europe has significantly influenced its history and culture,
-                    with the nation often serving as a bridge between Eastern
-                    and Western Europe.
+                  <Typography mb={2}>
+                    <Box component="span" fontWeight="bold">
+                      Time zone:{' '}
+                    </Box>{' '}
+                    {country.timezones[0]}
                   </Typography>
-
-                  <Typography paragraph>
-                    {/* The country spans an area of {country.area.toLocaleString()} square kilometers and features a relatively low Gini coefficient of {country.gini['2018']}, indicating relatively low levels of income inequality. {country.name.common} is a proud member of the United Nations, contributing to global peace, security, and development initiatives. */}
-                  </Typography>
-
-                  <Typography paragraph>
-                    {/* Travelers visiting {country.name.common} can expect to encounter a time zone of {country.timezones[0]}. Driving is on the {country.car.side} side of the road, and the international vehicle registration code for {country.name.common} is "{country.car.signs[0]}". The postal code format for the country is "{country.postalCode.format}", which is essential for sending and receiving mail. */}
-                  </Typography>
-
-                  <Typography paragraph>
-                    {/* In summary, {country.name.common} is a country steeped in history, culture, and natural beauty. Its central location in Europe, strong economy, and commitment to international collaboration make it an essential player on the global stage. */}
+                  <Typography mb={2}>
+                    <Box component="span" fontWeight="bold">
+                      Area:{' '}
+                    </Box>{' '}
+                    {country.area}
                   </Typography>
                 </CardContent>
               </Collapse>

@@ -9,7 +9,7 @@ const Home = () => {
       <div className="welcome-section">
         <div className="welcome-content">
           <div className="welcome-description">
-            <h1 className="welcome-heading">Welcome to Country Explore App</h1>
+            <h1 className="welcome-heading">Welcome to World Whiz App</h1>
             <p className="welcome-text">
               App provides essential information on 250 countries around the
               world. You can view a list of countries with key data such as

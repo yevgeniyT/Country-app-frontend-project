@@ -23,6 +23,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Navbar = () => {
+  // Use to show serch input only where is it needed
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -157,7 +158,7 @@ const Navbar = () => {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Country Explorer App
+            World Whiz App
           </Typography>
 
           {currentPath !== '/' &&

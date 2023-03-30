@@ -39,7 +39,7 @@ const Footer = () => {
                 },
               }}
             >
-              © {2023} All rights reserved. Developed by Yevgeniy Tolkachev
+              © {2023} Developed by Yevgeniy Tolkachev
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               <Box
