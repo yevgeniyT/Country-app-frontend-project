@@ -164,7 +164,8 @@ const CountryDitails: React.FC = () => {
                     <Box component="span" fontWeight="bold">
                       Has borders with:{' '}
                     </Box>
-                    {country.borders.length > 0
+                    {country.hasOwnProperty('borders') &&
+                    country.borders.length > 0
                       ? country.borders.join(', ')
                       : 'No data'}
                   </Typography>
@@ -178,7 +179,7 @@ const CountryDitails: React.FC = () => {
                     <Box component="span" fontWeight="bold">
                       Area:{' '}
                     </Box>{' '}
-                    {country.area}
+                    {country.area} km²
                   </Typography>
                 </CardContent>
               </Collapse>
