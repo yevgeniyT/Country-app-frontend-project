@@ -21,8 +21,6 @@ export const countryDitails = createSlice({
         state.message = 'Data is loading';
       })
       .addCase(getCountryDitails.fulfilled, (state, action) => {
-        console.log(action.payload);
-
         state.countryDitails = action.payload;
         state.loading = false;
         state.error = false;

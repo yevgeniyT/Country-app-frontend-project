@@ -74,9 +74,11 @@ const Navbar = () => {
       </MenuItem>
 
       <MenuItem>
-        <IconButton>
-          <PublicIcon />
-        </IconButton>
+        <NavLink to="/map">
+          <IconButton>
+            <PublicIcon />
+          </IconButton>
+        </NavLink>
       </MenuItem>
 
       <MenuItem>
@@ -152,14 +154,17 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            World Whiz App
-          </Typography>
+          <NavLink to="/">
+            <Typography
+              color="white"
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              World Whiz App
+            </Typography>
+          </NavLink>
 
           {currentPath !== '/' &&
             currentPath !== '/country_ditails' &&
