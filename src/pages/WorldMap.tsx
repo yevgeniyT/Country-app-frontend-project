@@ -1,20 +1,29 @@
-// @ts-nocheck
+//@ts-nocheck
 import React from 'react';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+
 import '../App.css';
 import 'leaflet/dist/leaflet.css';
 import { useAppSelector } from '../app/hooks';
 import countries from '../data/countries.json';
+//import types for Layer leaflet
+import { Layer, LeafletEvent } from 'leaflet';
 
-const center = [20, 100];
+interface CountryProperties {
+  ISO_A3: string;
+}
+interface Country {
+  properties: CountryProperties;
+}
+
 const WorldMap = () => {
   const countriesData = useAppSelector(state => state.countryR.countries);
 
   const countryStyle = {
     color: 'grey',
     weight: 1,
-    dashArray: 5,
+    dashArray: '5',
   };
   const highlightStyle = {
     color: 'blue',
@@ -22,7 +31,7 @@ const WorldMap = () => {
     dashArray: '',
   };
 
-  const onEachCountry = (country, layer) => {
+  const onEachCountry = (country: Country, layer: Layer) => {
     const countryCode = country.properties.ISO_A3;
     const countryInfo = countriesData.find(c => c.cca3 === countryCode);
     if (countryInfo) {
@@ -38,15 +47,15 @@ const WorldMap = () => {
       layer.bindPopup('No information available');
     }
 
-    const onClick = event => {
+    const onClick = (event: LeafletEvent) => {
       event.target.openPopup();
     };
 
-    const mouseover = event => {
+    const mouseover = (event: LeafletEvent) => {
       event.target.setStyle(highlightStyle);
     };
 
-    const mouseout = event => {
+    const mouseout = (event: LeafletEvent) => {
       event.target.setStyle(countryStyle);
     };
 
@@ -58,7 +67,7 @@ const WorldMap = () => {
   return (
     <div className="map-container">
       <MapContainer
-        center={center}
+        center={[20, 100]}
         zoom={3}
         style={{ width: '100%', height: 'calc(100vh - 87px - 40px)' }}
       >
