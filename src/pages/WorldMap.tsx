@@ -1,7 +1,7 @@
-//@ts-nocheck
 import React from 'react';
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { FeatureCollection } from 'geojson';
 
 import '../App.css';
 import 'leaflet/dist/leaflet.css';
@@ -74,7 +74,7 @@ const WorldMap = () => {
         {countries && (
           <GeoJSON
             style={countryStyle}
-            data={countries.features}
+            data={countries as FeatureCollection}
             onEachFeature={onEachCountry}
           />
         )}
