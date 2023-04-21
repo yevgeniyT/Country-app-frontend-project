@@ -82,6 +82,7 @@ export type CountriesState = {
   error: boolean;
   message: string;
   originalCountrie: CountriesResponse;
+  isSearchEmpty: boolean;
 };
 
 export type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;

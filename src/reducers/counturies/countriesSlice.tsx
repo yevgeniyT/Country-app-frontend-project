@@ -10,6 +10,8 @@ const INITIAL_STATE: CountriesState = {
   error: false,
   message: '',
   originalCountrie: [],
+  // store state of serch query in order to render NoDataFound in case oo no countriy avalible from sersh pr some misspell
+  isSearchEmpty: false,
 };
 
 export const countriesSlice = createSlice({
@@ -18,14 +20,22 @@ export const countriesSlice = createSlice({
   reducers: {
     searchCountries: (state, action) => {
       let searchQuery = action.payload;
+      //user has cleared the search input, and we should display the full list of countries again.
       if (searchQuery === '') {
         state.countries = state.originalCountrie;
+        //Since the search input is empty, we set false  indicating that we're not dealing with an empty search result.
+        state.isSearchEmpty = false;
       } else {
-        state.countries = state.originalCountrie.filter(country =>
+        //Ceate a new array containing only the countries that match the search query,
+        const filteredCountries = state.originalCountrie.filter(country =>
           country.name.official
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase())
         );
+        //update state.countries to the filtered list of countries, which will be displayed in the UI.
+        state.countries = filteredCountries;
+        // if filteredCountries.length returns 0 it means 0=0 => thre, i this way isSerchEmty will be saved as true
+        state.isSearchEmpty = filteredCountries.length === 0;
       }
     },
   },

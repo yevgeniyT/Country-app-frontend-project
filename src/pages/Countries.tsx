@@ -11,6 +11,7 @@ import { Country } from '../types/types';
 //imports to handle errors
 import Loading from '../pages/loading';
 import ErrorFetch from '../pages/ErrorFetch';
+import NoDataFound from './NoDataFound';
 
 const Countries = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ const Countries = () => {
 
   const loading = useAppSelector(state => state.countryR.loading);
   const error = useAppSelector(state => state.countryR.error);
-  console.log(error);
+  const isSearchEmpty = useAppSelector(state => state.countryR.isSearchEmpty);
 
   const isCountryFavorite = (id: string) => {
     return favoriteCountries.some(favoriteCountry => favoriteCountry.id === id);
@@ -35,11 +36,16 @@ const Countries = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
+  // handle all errors
   if (loading) {
     return <Loading />;
   }
   if (error) {
     return <ErrorFetch />;
+  }
+  // Use this condition to render noDataFound page bused on state from slice
+  if (isSearchEmpty) {
+    return <NoDataFound />;
   }
   return (
     <div>
