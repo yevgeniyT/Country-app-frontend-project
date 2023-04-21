@@ -3,7 +3,7 @@ import React from 'react';
 import CountriesTable from '../features/CountriesTable';
 import { useAppSelector } from '../app/hooks';
 import { Typography } from '@mui/material';
-
+import EmptyFavoriteList from '../pages/EmptyFavoriteList';
 const Favorite: React.FC = () => {
   const favoriteList = useAppSelector(
     state => state.favoriteCountriesListR.favoriteCountriesList
@@ -31,10 +31,15 @@ const Favorite: React.FC = () => {
           favoriteList.length === 1 ? 'country' : 'countries '
         }in your list`}
       </Typography>
-      <CountriesTable
-        data={favoriteList}
-        isCountryFavorite={isCountryFavorite}
-      />
+      {/* Conditional rendering page, is there is at least one country in favorite country list the it will be rendered, else emptyFavorite page will be rendered */}
+      {favoriteList.length === 0 ? (
+        <EmptyFavoriteList />
+      ) : (
+        <CountriesTable
+          data={favoriteList}
+          isCountryFavorite={isCountryFavorite}
+        />
+      )}
     </div>
   );
 };

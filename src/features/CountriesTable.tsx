@@ -3,7 +3,7 @@ import React from 'react';
 import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
 import { deleteCountry } from '../reducers/counturies/favoriteCountriesSlice';
-import EmptyFavoriteList from '../pages/EmptyFavoriteList';
+// import EmptyFavoriteList from '../pages/EmptyFavoriteList';
 import { useAppDispatch } from '../app/hooks';
 
 // MUI imports
@@ -192,7 +192,8 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
   );
   return (
     <Box>
-      {data.length === 0 ? <EmptyFavoriteList /> : CountriesTableContent}
+      {CountriesTableContent}
+      {/* {data.length === 0 ? <EmptyFavoriteList /> : CountriesTableContent} */}
       <ToastContainer hideProgressBar />
     </Box>
   );

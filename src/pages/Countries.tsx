@@ -8,12 +8,20 @@ import { addCountryToList } from '../reducers/counturies/favoriteCountriesSlice'
 
 import { Country } from '../types/types';
 
+//imports to handle errors
+import Loading from '../pages/loading';
+import ErrorFetch from '../pages/ErrorFetch';
+
 const Countries = () => {
   const dispatch = useAppDispatch();
   const countriesList = useAppSelector(state => state.countryR.countries);
   const favoriteCountries = useAppSelector(
     state => state.favoriteCountriesListR.favoriteCountriesList
   );
+
+  const loading = useAppSelector(state => state.countryR.loading);
+  const error = useAppSelector(state => state.countryR.error);
+  console.log(error);
 
   const isCountryFavorite = (id: string) => {
     return favoriteCountries.some(favoriteCountry => favoriteCountry.id === id);
@@ -27,6 +35,12 @@ const Countries = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <ErrorFetch />;
+  }
   return (
     <div>
       <CountriesTable

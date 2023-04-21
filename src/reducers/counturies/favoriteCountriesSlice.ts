@@ -3,7 +3,7 @@ import { Country } from '../../types/types';
 
 const initialState = {
   favoriteCountriesList: [] as Country[],
-  // originalFavoriteCountriesList: [] as Country[],
+  originalFavoriteCountriesList: [] as Country[],
 };
 
 export const favoriteCountriesList = createSlice({
@@ -12,6 +12,7 @@ export const favoriteCountriesList = createSlice({
   reducers: {
     addCountryToList: (state, action) => {
       state.favoriteCountriesList.push(action.payload);
+      // state.originalFavoriteCountriesList.push(action.payload);
       // state.originalFavoriteCountriesList = [
       //   ...state.originalFavoriteCountriesList,
       //   action.payload,

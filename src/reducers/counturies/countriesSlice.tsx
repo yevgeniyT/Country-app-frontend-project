@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 import { getCountries } from '../../services/api';
-
 import { CountriesState } from '../../types/types';
 
 const INITIAL_STATE: CountriesState = {
@@ -35,6 +34,7 @@ export const countriesSlice = createSlice({
       .addCase(getCountries.pending, state => {
         state.loading = true;
         state.message = 'Data is pending....';
+        state.error = false;
       })
       .addCase(getCountries.fulfilled, (state, action) => {
         state.countries = action.payload.map(country => ({
