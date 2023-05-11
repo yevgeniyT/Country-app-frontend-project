@@ -1,11 +1,9 @@
-import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Footer = () => {

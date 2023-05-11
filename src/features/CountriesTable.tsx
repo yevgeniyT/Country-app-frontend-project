@@ -1,7 +1,10 @@
+// Reusable component that recievs data as props from Country and Favorite pages and render them
 import React from 'react';
 
-import { getCountryDitails } from '../services/api';
 import { Link } from 'react-router-dom';
+
+// components import
+import { getCountryDitails } from '../services/api';
 import { deleteCountry } from '../reducers/counturies/favoriteCountriesSlice';
 import { useAppDispatch } from '../app/hooks';
 
@@ -20,11 +23,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Country, CountriesTableProps, CountryRow } from '../types/types';
 
 const CountriesTable: React.FC<CountriesTableProps> = ({
+  // recive data as props from Countries.tsx and Favoprite.tsx
   data,
   handleAddToFavorite,
   isCountryFavorite,
 }) => {
+  // declare const to despatch actions
   const dispatch = useAppDispatch();
+  //Define an array object that represents an colums of the dataGrid layout in MUI
   const columns: GridColDef[] = [
     {
       field: 'flag',
@@ -33,8 +39,15 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
       align: 'center',
       sortable: false,
       disableColumnMenu: true,
+      //The params object is automatically provided by the DataGrid.  When the DataGrid renders the table, it iterates through each row in the rows array and maps the data from the row to the corresponding columns defined in the columns array.
+      //For each cell, the DataGrid component creates a params object that contains information about the cell, such as the row data, column data, rowIndex, and columnIndex
       renderCell: params => (
-        <img src={params.row.flag} alt={params.row.flagAlt} />
+        <StyledLink
+          to="/country_ditails"
+          onClick={() => dispatch(getCountryDitails(params.row.nameOfficial))}
+        >
+          <img src={params.row.flag} alt={params.row.flagAlt} />
+        </StyledLink>
       ),
     },
     {
@@ -108,7 +121,7 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
             dispatch(deleteCountry(params.row.id)); // Remove from favorites if it's already a favorite
             toast.error('Country removed from favorites.', { autoClose: 600 });
           } else {
-            (handleAddToFavorite || (() => {}))(params.row); // Add to favorites if it's not a favorite yet
+            (handleAddToFavorite || (() => {}))(params.row); // Add to favorites if it's not a favorite yet. This pattern is used to make sure that the code doesn't throw an error if the handleAddToFavorite function is not provided. It's a way to provide a "safe" fallback function that doesn't do anything when called.
             toast.success('Country added to favorites.', { autoClose: 600 });
           }
         };
@@ -142,7 +155,7 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
       ),
     },
   ];
-
+  //map data
   const rows: CountryRow[] = data.map((country: Country) => {
     return {
       id: country.cca3 || country.id,
@@ -157,6 +170,7 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
     };
   });
 
+  // Styling component, which is used for navigation to the country details page.
   const StyledLink = styled(Link)({
     textDecoration: 'none',
     color: 'inherit',
@@ -166,6 +180,7 @@ const CountriesTable: React.FC<CountriesTableProps> = ({
     },
   });
 
+  //creates the content of the table using the DataGrid component, with custom styling and properties. The table displays the list of countries with the columns defined earlier.
   const CountriesTableContent = (
     <Box textAlign="center">
       <Box

@@ -81,7 +81,7 @@ export type CountriesState = {
   loading: boolean;
   error: boolean;
   message: string;
-  originalCountrie: CountriesResponse;
+  originalCountries: CountriesResponse;
   isSearchEmpty: boolean;
 };
 

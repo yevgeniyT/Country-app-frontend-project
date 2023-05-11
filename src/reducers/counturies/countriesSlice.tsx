@@ -9,7 +9,7 @@ const INITIAL_STATE: CountriesState = {
   loading: false,
   error: false,
   message: '',
-  originalCountrie: [],
+  originalCountries: [],
   // store state of serch query in order to render NoDataFound in case oo no countriy avalible from sersh pr some misspell
   isSearchEmpty: false,
 };
@@ -22,12 +22,12 @@ export const countriesSlice = createSlice({
       let searchQuery = action.payload;
       //user has cleared the search input, and we should display the full list of countries again.
       if (searchQuery === '') {
-        state.countries = state.originalCountrie;
+        state.countries = state.originalCountries;
         //Since the search input is empty, we set false  indicating that we're not dealing with an empty search result.
         state.isSearchEmpty = false;
       } else {
         //Ceate a new array containing only the countries that match the search query,
-        const filteredCountries = state.originalCountrie.filter(country =>
+        const filteredCountries = state.originalCountries.filter(country =>
           country.name.official
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase())
@@ -51,7 +51,7 @@ export const countriesSlice = createSlice({
           ...country,
           id: uuidv4(),
         }));
-        state.originalCountrie = action.payload;
+        state.originalCountries = action.payload;
         state.loading = false;
       })
       .addCase(getCountries.rejected, state => {

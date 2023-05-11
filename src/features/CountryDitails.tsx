@@ -1,9 +1,12 @@
+//This component displays detailed information about a selected country, including its name, capital, flag, coat of arms, time zone, language, currency, description, and location. The data for the country is retrieved from the global state using a Redux selector.
+
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../app/hooks';
 import { v4 as uuidv4 } from 'uuid';
 
-//*MUI imports
+//MUI imports
 import {
   Avatar,
   Card,
@@ -23,7 +26,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/system';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 
 type ExpandMoreProps = {
   expand: boolean;
@@ -59,6 +61,7 @@ const CountryDitails: React.FC = () => {
     <Box>
       {countryDitailsData.map(country => {
         return (
+          //Create a Paper component to center the card vertically and horizontally.
           <Paper
             key={uuidv4()}
             sx={{

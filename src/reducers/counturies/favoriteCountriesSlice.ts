@@ -11,12 +11,11 @@ export const favoriteCountriesList = createSlice({
   initialState: initialState,
   reducers: {
     addCountryToList: (state, action) => {
+      console.log(action.payload);
+      console.log(state);
+
       state.favoriteCountriesList.push(action.payload);
-      // state.originalFavoriteCountriesList.push(action.payload);
-      // state.originalFavoriteCountriesList = [
-      //   ...state.originalFavoriteCountriesList,
-      //   action.payload,
-      // ];
+      state.originalFavoriteCountriesList.push(action.payload);
     },
 
     deleteCountry: (state, action) => {
@@ -27,7 +26,7 @@ export const favoriteCountriesList = createSlice({
 
     serchFavoriteCountries: (state, action) => {
       let searchQuery = action.payload;
-      state.favoriteCountriesList = state.favoriteCountriesList.filter(
+      state.favoriteCountriesList = state.originalFavoriteCountriesList.filter(
         country =>
           country.nameOfficial
             .toLocaleLowerCase()

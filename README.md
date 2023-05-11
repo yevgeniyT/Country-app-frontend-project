@@ -1,66 +1,52 @@
-# FRONT END PROJECT
+# Country Information App
 
-![React](https://img.shields.io/badge/React-v.18-blue)
-![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
-![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
-![react-router-dom](https://img.shields.io/badge/ReactRouter-v.6.4-orange)
+This application allows users to search and view information about countries. Users can also add countries to their favorites list and view them separately. The app provides a world map view with interactive country borders.
 
-The front end project is to practice React with TypeScript and Redux. Completing all requirement, you will get 20 points/ 20 points. Good luck and HAVE FUN !!!
+## Table of Contents
 
-## How to run project
+- [Features](#features)
+- [Components](#components)
+- [Redux Store](#redux-store)
+- [Services](#services)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
 
-1. Step 1: npm install
-2. Step 2: npm start
+## Features
 
-## Logic Requirements (9 points)
+- Search countries by name
+- View detailed information about a country
+- Add and remove countries from favorites list
+- Interactive world map
+- Dark and light theme
 
-1. Fetch data from this API: `https://restcountries.com/v3.1/all`
-2. The user can search country by name
-3. Get country detail by this API: `https://restcountries.com/v3.1/name/{name}`
-4. When the user click to country name or a button it should show country detail
-5. The country detail should have name, region, population, flag and list of languages
-6. The user can add country to `Favorite` page
-7. When the user add a country to `Favorite` the favorite icon should change the color.
-8. Have a `Loading` page while fetching data
-9. Deploy the project
+## Components
 
-## Styling Requirements (4 points)
+- `App`: The main application component that wraps the entire application and sets up the theme.
+- `Index`: Sets up the routing for different pages in the application.
+- `Home`: The home page component.
+- `Countries`: Displays a list of countries and a search bar.
+- `CountryCard`: Displays a single country card with basic information.
+- `CountryDetails`: Displays detailed information about a selected country.
+- `Favorite`: Displays the list of favorite countries.
+- `WorldMap`: Displays the interactive world map with country borders.
+- `Navbar`: The navigation bar component.
+- `Footer`: The footer component.
+- `Error`: Displays an error message when fetching data fails.
 
-1. Font: `font-family: 'Nunito', sans-serif`
-2. Display data in table
-3. Navbar and Footer
-4. When the user add an country to `Favorite` page, you should show a message, for example: `A country just added to the favorite page`
+## Redux Store
 
-## Code style Requirements (6 points)
+The Redux store is responsible for managing the application's state. The following slices manage different parts of the application state:
 
-1. Naming convention
-2. Clear file structure
-3. Divided the project to small components
-4. Clean code: no console.log, no dead code,
-5. Format code (Prettier - Code formatter)
-6. Separate import from your own file and the import from the package
+- `countriesSlice`: Manages the state related to the list of countries.
+- `countryDetailsSlice`: Manages the state related to the details of a specific country.
+- `favoriteCountriesListSlice`: Manages the state related to the user's favorite countries list.
+- `themeSelectorSlice`: Manages the state related to the application's theme (dark or light mode).
 
-## Extra requirements (1 points)
+## Services
 
-ONLY DO THIS PART WHEN YOU HAVE COMPLETED THE REQUIREMENTS PART
+The `services` folder contains functions that make API calls to fetch data. These functions are used in the async actions of the Redux slices.
 
-1. Sorting by product name
-2. Sorting the country by population
-3. Add an extra page
-4. Add pagination
+- `api.ts`: Provides functions for fetching countries and country details.
 
-## Useful sources
-
-1. API information: `https://restcountries.com/`
-2. Alert: `https://mui.com/material-ui/react-snackbar/#main-content`
-3. Table: `https://mui.com/material-ui/react-table/#basic-table`
-4. Data grid: `https://mui.com/x/react-data-grid/components/#main-content`
-5. Font: `https://fonts.google.com/specimen/Nunito`
-6. Deploy: `https://vercel.com/`, `https://www.netlify.com/`
-7. Prettier - Code formatter - Extension in VSCode
-
-## Screenshots
-
-![Country list](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/allCountries.png)
-
-![Country detail](https://raw.githubusercontent.com/Andreaa-Dev/Country-list/master/src/images/eachCountry.png)
+## Installation
